@@ -12,6 +12,28 @@
 .container {
 	margin-top: 80px;
 }
+.unit {
+	display: flex;
+	border-radius: 5px;
+	border: 1px;
+	background-color: #9EEBBF;
+	height: 80px;
+	width: 120px;
+	text-align: center;
+	align-items:center;
+	justify-content: center;
+	text-decoration: none;
+	
+}
+.unit a{
+	text-align: center;
+	color: black;
+}
+.unit a:hover {
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+}
 </style>
 <body>
 <div class="container">

@@ -18,7 +18,7 @@ public class DataSource {
 	public static Connection getConnection() {
 		Connection con=null;
 		try {
-			 con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","System","shreeya");
+			 con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","shreeya");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

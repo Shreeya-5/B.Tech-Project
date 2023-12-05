@@ -31,15 +31,15 @@
 						<form>
 							<div class="form-group">
 								<label for="courseTitle">Course Title:</label>
-								<input type="text" class="form-control" id="courseTitle" placeholder="Enter Course Title">
+								<input type="text" class="form-control" id="courseTitle" name="courseTitle" placeholder="Enter Course Title">
 							</div>
 							<div class="form-group">
 								<label for="courseCode">Course Code:</label>
-								<input type="text" class="form-control" id="courseCode" placeholder="Enter Course Code">
+								<input type="text" class="form-control" id="courseCode" name="courseCode" placeholder="Enter Course Code">
 							</div>
 							<div class="form-group">
 								<label for="courseDesc">Course Description:</label>
-								<textarea class="form-control" id="courseDesc" placeholder="Enter Course Description"></textarea>
+								<textarea class="form-control" id="courseDesc" name="courseDesc" placeholder="Enter Course Description"></textarea>
 							</div>
 						</form>
 					</div>
@@ -63,11 +63,11 @@
 						<form>
 							<div class="form-group">
 								<label for="unitName">Unit Name:</label>
-								<input type="text" class="form-control" id="unitName" placeholder="Unit Name">
+								<input type="text" class="form-control" id="unitName" name="unitName" placeholder="Unit Name">
 							</div>
 							<div class="form-group">
 								<label for="unitDescription">Unit Description:</label>
-								<textarea class="form-control" id="unitDescription" placeholder="Unit Description"></textarea>
+								<textarea class="form-control" id="unitDescription" name="unitDesc" placeholder="Unit Description"></textarea>
 							</div>
 						</form>
 					</div>
