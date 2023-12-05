@@ -50,7 +50,7 @@ public class LoginController extends HttpServlet {
 		session.setAttribute("studlist",lstreg);
 		
 		if(lstreg!=null) {
-			response.sendRedirect("navbar.jsp");
+			response.sendRedirect("CourseDashboard.jsp");
 		}
 		else {
 			logincnt++;

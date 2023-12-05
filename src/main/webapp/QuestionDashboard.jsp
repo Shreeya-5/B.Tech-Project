@@ -4,31 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit Management</title>
+    <title>Course Management</title>
 </head>
-<%@ include file="index.html"%>
-<%@ include file="navbar.jsp" %>
 <style>
 .container {
 	margin-top: 80px;
 }
 </style>
+<%@ include file="navbar.jsp" %>
+<%@ include file="index.html"%>
 <body>
 <div class="container">
     <div class="row">
         <div class="col-md-9">
             <!-- Content in the left part -->
-            <div class="unit">
-             <a href="QuestionDashboard.jsp" >Unit 1</a>
+            <div class="Question">
+             <a >1. What is Computer?</a>
             </div>
         </div>
         <div class="col-md-3">
             <!-- Rightmost part with Add and Remove buttons -->
             <h3>Actions</h3>
-            <button class="btn btn-primary btn-block" id="addUnitBtn" type="submit" onclick="openUnitModal()">Add Unit</button>
-            <button class="btn btn-success btn-block" id="generatePaperBtn">Generate Paper</button>
-            <button class="btn btn-info btn-block" id="previousPaperBtn">Previous Paper</button>
-            <button class="btn btn-danger btn-block" id="removeUnitBtn">Remove Unit</button>
+            <button class="btn btn-primary btn-block" id="addCourseBtn" type="submit" onclick="openQuestionsModal()">Add Questions</button>
+            
+            <button class="btn btn-danger btn-block" id="removeCourseBtn">Remove Question</button>
         </div>
     </div>
 </div>

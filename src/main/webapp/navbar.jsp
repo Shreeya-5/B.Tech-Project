@@ -1,14 +1,16 @@
+<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ include file="Profile.jsp"%>
-<%@ include file="index.html"%>
-
-<!DOCTYPE html>
 <html>
+<%@ include file="UserProfile.jsp"%>
 <head>
+<%@ include file="index.html"%>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <style>
+.container {
+   margin-top: 80px;
+}
 .navbar {
 	padding: 8px;
 	background: linear-gradient(to right, #e53075, #245ead);
@@ -53,18 +55,15 @@
 	<nav class="navbar fixed-top navbar-light bg-light">
 		<div class="nav-bar">
 			<div class="navbar-brand">
-				<img src="CumminsLogo.png" alt="Avatar Logo" style="width: 45px;"
-					class="rounded-circle">
+				<img src="EduPaperLogo.png" alt="Avatar Logo" style="height: 40px;">
 			</div>
-			<div class="nav-title">EduPaper</div>
 		</div>
 		<div>
-			<a class="link" href="#">Home</a> <a class="link" href="#">About
-				us</a> <a class="link" href="#">Log out</a>
+			<a class="link" href="CourseDashboard.jsp">Home</a> 
+			<a class="link" href="home.jsp">About us</a> 
+			<a class="link" href="Login.jsp">Log out</a>
 			<button class="btn" type="submit" onclick="showPopup()">
-
 				<i class="link bi bi-person-circle"></i>
-
 			</button>
 		</div>
 	</nav>

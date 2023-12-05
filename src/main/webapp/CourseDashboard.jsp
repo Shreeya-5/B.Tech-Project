@@ -4,23 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Management</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body>
-
+<style>
+.container {
+	margin-top: 80px;
+}
+</style>
+<%@ include file="Popups.jsp"%>
 <%@ include file="navbar.jsp" %>
-
+<%@ include file="index.html"%>
+<body>
 <div class="container">
     <div class="row">
         <div class="col-md-9">
             <!-- Content in the left part -->
-            <h3>Main Content</h3>
-            <p>This is the main content of the page.</p>
+            <div class="course">
+             <a href="UnitDashboard.jsp" >Software Engineering</a>
+            </div>
         </div>
         <div class="col-md-3">
             <!-- Rightmost part with Add and Remove buttons -->
             <h3>Actions</h3>
-            <button class="btn btn-primary btn-block" id="addCourseBtn">Add Course</button>
+            <button class="btn btn-primary btn-block" id="addCourseBtn" type="submit" onclick="openCourseModal()">Add Course</button>
+            
             <button class="btn btn-danger btn-block" id="removeCourseBtn">Remove Course</button>
         </div>
     </div>
