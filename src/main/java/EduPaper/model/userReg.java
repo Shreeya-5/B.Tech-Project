@@ -1,17 +1,19 @@
-package EduPapar.model;
+package EduPaper.model;
 
 public class userReg {
 	private String name;
 	private String email;
+	private String dept;
 	private String mobno;
 	private String password;
 	
 	public userReg() {}
 	
-	public userReg(String name, String email, String mobno, String password) {
+	public userReg(String name, String email, String mobno, String password, String dept) {
 		super();
 		this.name = name;
 		this.email = email;
+		this.dept = dept;
 		this.mobno = mobno;
 		this.password = password;
 	}
@@ -30,6 +32,14 @@ public class userReg {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getDept() {
+		return dept;
+	}
+
+	public void setDept(String dept) {
+		this.dept = dept;
 	}
 
 	public String getMobno() {

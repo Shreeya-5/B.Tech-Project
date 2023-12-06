@@ -1,4 +1,4 @@
-package EduPapar.model;
+package EduPaper.model;
 
 public class addQue {
 	private int questionNo;

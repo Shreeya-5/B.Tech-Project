@@ -9,15 +9,15 @@
 <style>
 .card {
 	border-radius: 1rem;
+	font-size: 14px;
 }
 
 button {
-   margin-top: 20px;
+   margin-top: 15px;
 }
-
 p {
-	font-size: 14px;
-	margin-top: -22px;
+	font-size: 12px;
+	margin-top: -18px;
 }
 </style>
 </head>
@@ -32,35 +32,47 @@ p {
 						<div class="card shadow-2-strong" style="border-radius: 1rem;">
 							<div class="card-body p-5 text-center">
 
-								<h2 class="mb-4">Register</h2>
+								<h3 class="mb-4">Register</h3>
 
 								<div class="mb-3">
 									<input type="text" required="required" name="name"
 										placeholder="Enter Name"
-										class="form-control form-control-lg rounded-pill" />
+										class="form-control rounded-pill" />
 								</div>
 								<div class="mb-3">
 									<input type="text" required="required" name="email"
 										placeholder="Enter Email"
-										class="form-control form-control-lg rounded-pill" />
+										class="form-control rounded-pill" />
+								</div>
+								<div class="mb-3">
+									<select name="department" required="required"
+                                        class="form-control rounded-pill">
+                                        <option value="" disabled selected>Select Department</option>
+                                        <option value="BSH">Basic Sciences and Humanities (F.Y. B.Tech)</option>
+                                        <option value="COMP">Computer Engineering</option>
+                                        <option value="ENTC">Electronics and Telecommunication</option>
+                                        <option value="IT">Information Technology</option>
+                                        <option value="INSTRU">Instrumentation And Control</option>
+                                        <option value="MECH">Mechanical Engineering</option>
+                                    </select>
 								</div>
 								<div class="mb-3">
 									<input type="text" required="required" name="mobno"
 										placeholder="Enter Mobile No."
-										class="form-control form-control-lg rounded-pill" />
+										class="form-control rounded-pill" />
 								</div>
 								<div class="mb-3">
 									<input type="password" required="required" name="pass"
 										placeholder="Enter Password"
-										class="form-control form-control-lg rounded-pill" />
+										class="form-control rounded-pill" />
 								</div>
 								<div class="mb-3">
                            <input type="password" required="required" name="cpass"
                               placeholder="Confirm Password"
-                              class="form-control form-control-lg rounded-pill" />
+                              class="form-control rounded-pill" />
                         </div>
-								<button class="btn btn-primary btn-lg rounded-pill w-100"
-									type="submit">Login</button>
+								<button class="btn btn-primary rounded-pill w-100"
+									type="submit">Register</button>
 								<br>
 								<br>
 								<p class="mb-0">

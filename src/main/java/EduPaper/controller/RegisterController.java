@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import EduPapar.model.userReg;
 import EduPaper.dao.registerDao;
+import EduPaper.model.userReg;
 
 /**
  * Servlet implementation class RegisterController
@@ -34,13 +34,14 @@ public class RegisterController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String sname=request.getParameter("name");
 		String email=request.getParameter("email");
+		String dept=request.getParameter("department");
 		String mobno=request.getParameter("mobno");
 		String pass=request.getParameter("pass");
 		String cpass=request.getParameter("cpass");
 		
-		userReg studmodel=new userReg(sname,email,mobno,pass);
+		userReg usermodel=new userReg(sname,email,dept,mobno,pass);
 		List<userReg> lstsreg=new LinkedList<>();
-		lstsreg.add(studmodel);
+		lstsreg.add(usermodel);
 		registerDao regdao=new registerDao();
 		int i=regdao.Create(lstsreg);
 		if(i>0) {

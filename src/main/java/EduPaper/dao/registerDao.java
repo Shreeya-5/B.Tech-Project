@@ -1,6 +1,4 @@
 package EduPaper.dao;
-import EduPapar.model.*;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,18 +6,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
+import EduPaper.model.*;
+
 public class registerDao {
  public int Create(List<userReg> lstsreg) {
 	 int i=0;
 	 userReg s=lstsreg.get(0);
 	 Connection con=DataSource.getConnection();
-	System.out.println(con);
 	 try {
-		PreparedStatement pstate=con.prepareStatement("insert into user_reg values(?,?,?,?)");
+		PreparedStatement pstate=con.prepareStatement("insert into users values(?,?,?,?,?)");
 		 pstate.setString(1,s.getName());
 		 pstate.setString(2,s.getEmail());
 		 pstate.setString(3,s.getMobno());
 		 pstate.setString(4,s.getPassword());
+		 pstate.setString(5,s.getDept());
 		 i=pstate.executeUpdate();
 	} catch (SQLException e) {
 		e.printStackTrace();
@@ -40,15 +40,14 @@ public class registerDao {
 		List<userReg> lstreg=null;
 		Connection con=DataSource.getConnection();
 		try {
-			PreparedStatement pstate = con.prepareStatement("select * from user_reg where user_email=? and user_pass=?");
+			PreparedStatement pstate = con.prepareStatement("select * from users where user_email=? and user_pass=?");
 			pstate.setString(1, lobj.getEmail());
 			pstate.setString(2, lobj.getPassword());
 			ResultSet rs = pstate.executeQuery();			
-			System.out.println(lobj.getEmail());
 			if (rs.next()) {
 				b = true;
 				lstreg=new LinkedList<userReg>();
-				userReg s=new userReg(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+				userReg s=new userReg(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
 				lstreg.add(s);
 			} 
 		} catch (Exception e) {
