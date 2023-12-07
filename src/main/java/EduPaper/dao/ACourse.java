@@ -16,8 +16,8 @@ public class ACourse {
 
 		try {
 			PreparedStatement pstate = con.prepareStatement("INSERT INTO course VALUES (?,?,?,?)");
-			pstate.setString(1, s.getCourseName());
-			pstate.setString(2, s.getCourseCode());
+			pstate.setString(2, s.getCourseName());
+			pstate.setString(1, s.getCourseCode());
 			pstate.setString(3, s.getDeptName());
 			pstate.setString(4, s.getUserEmail());
 			

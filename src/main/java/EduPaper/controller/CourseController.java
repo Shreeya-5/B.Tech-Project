@@ -53,11 +53,10 @@ public class CourseController extends HttpServlet {
 	    newCourse.setDeptName(user.getDept());
 	    newCourse.setUserEmail(user.getEmail());
 	    
-	    List<addCourse> allCourses = courseDAO.getAllCourses(user.getEmail());
-	    session.setAttribute("allCourses", allCourses);
-	    RequestDispatcher dispatcher = request.getRequestDispatcher("CourseDashboard.jsp");
-	    dispatcher.forward(request, response);
 	    int result = courseDAO.create(newCourse);
+	    if (result>0) {
+	    	response.sendRedirect("CourseDashboard.jsp");
+	    }
 	    
 	}
 

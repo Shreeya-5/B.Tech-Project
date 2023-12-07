@@ -34,23 +34,23 @@
 	justify-content: center;
 	align-items: center;
 	text-decoration: none;
+	color: black; background-color : #9EEBBF;
+	border-radius: 5px;
+	background-color: #9EEBBF;
 }
 
-.course a {
-	color: black;
-}
-
-.course a:hover {
+.course:hover {
 	text-decoration: none;
 	color: black;
 	font-weight: bold;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+	position: relative;
 }
 </style>
 <body>
 	<%
 	// Retrieving data from the session
 	userReg loggedInUser = (userReg) session.getAttribute("loggedInUser");
-	List<addCourse> allCourses = (List<addCourse>) session.getAttribute("allCourses");
 	%>
 	<!-- Course Modal -->
 	<form action="CourseController">
@@ -91,19 +91,20 @@
 						<%
 						ACourse courseDao = new ACourse();
 						List<addCourse> courses = courseDao.getAllCourses(user.getEmail());
-						if (!courses.isEmpty()) {
-						%>
-						<h2>Add Courses</h2>
-						<%
-						
 
-						for (addCourse course : courses) {
+						if (courses != null && !courses.isEmpty()) {
+							for (addCourse course : courses) {
 						%>
-						<div class="course" id="<%=course.getCourseCode()%>">
-							<a href="UnitDashboard"><%=course.getCourseCode()%></a>
-						</div>
+						<a href="UnitDashboard.jsp" class="course"
+							id="<%=course.getCourseName()%>"> <%=course.getCourseName()%>
+						</a>
+
 						<%
 						}
+						} else {
+						%>
+						<h2>No Courses Available</h2>
+						<%
 						}
 						%>
 					</div>
@@ -113,8 +114,8 @@
 					<h3>Actions</h3>
 					<button class="btn btn-primary btn-block" id="addCourseBtn"
 						type="button" onclick="openCourseModal()">Add Course</button>
-					<button class="btn btn-danger btn-block" id="removeCourseBtn" onclick="removeDiv()">Remove
-						Course</button>
+					<button class="btn btn-danger btn-block" id="removeCourseBtn"
+						onclick="removeDiv()">Remove Course</button>
 				</div>
 			</div>
 		</div>
@@ -138,12 +139,6 @@
 				// Implement your save logic here
 				closeCourseModal();
 			}
-			
-		    // Assuming an action removes the div
-		    function removeDiv() {
-		        document.getElementById('divToRemove').style.display = 'none';
-		    }
-			
 		</script>
 	</form>
 </body>
