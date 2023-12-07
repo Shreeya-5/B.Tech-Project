@@ -17,10 +17,16 @@
 	margin-top: 80px;
 }
 
+.coursesDisplay {
+	display: flex;
+	flex-direction: row;
+}
+
 .course {
 	display: flex;
 	border-radius: 5px;
 	border: 1px;
+	margin: 10px;
 	background-color: #9EEBBF;
 	height: 80px;
 	width: 120px;
@@ -41,9 +47,11 @@
 }
 </style>
 <body>
-	<%// Retrieving data from the session
+	<%
+	// Retrieving data from the session
 	userReg loggedInUser = (userReg) session.getAttribute("loggedInUser");
- 	%>
+	List<addCourse> allCourses = (List<addCourse>) session.getAttribute("allCourses");
+	%>
 	<!-- Course Modal -->
 	<form action="CourseController">
 		<div class="modal" id="courseModal">
@@ -68,8 +76,7 @@
 
 					</div>
 					<div class="modal-footer">
-						<button type="button" onclick="addNewCourse()"
-							class="btn btn-success">Save</button>
+						<button type="submit" class="btn btn-success" onclick="saveCourse">Save</button>
 						<button type="button" class="btn btn-danger"
 							onclick="closeCourseModal()">Close</button>
 					</div>
@@ -78,24 +85,27 @@
 		</div>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-9">
+				<div class="col-md-9 ">
 					<!-- Content in the left part -->
-					<div id="coursesDisplay">
-						<%-- Fetch and display course names from the database --%>
-						<% ACourse courseDAO = new ACourse();
-                       List<addCourse> allCourses = courseDAO.getAllCourses();
-                       if (allCourses != null && !allCourses.isEmpty()) {
-                           for (addCourse course : allCourses) {
-                    %>
-						<div class="course">
-							<a href="UnitDashboard.jsp"><%= course.getCourseName() %></a>
+					<div class="coursesDisplay">
+						<%
+						ACourse courseDao = new ACourse();
+						List<addCourse> courses = courseDao.getAllCourses(user.getEmail());
+						if (!courses.isEmpty()) {
+						%>
+						<h2>Add Courses</h2>
+						<%
+						
+
+						for (addCourse course : courses) {
+						%>
+						<div class="course" id="<%=course.getCourseCode()%>">
+							<a href="UnitDashboard"><%=course.getCourseCode()%></a>
 						</div>
-						<%   }
-                       } else { %>
-						<div>
-							<h2>No Courses Added</h2>
-						</div>
-						<% } %>
+						<%
+						}
+						}
+						%>
 					</div>
 				</div>
 				<div class="col-md-3">
@@ -103,7 +113,7 @@
 					<h3>Actions</h3>
 					<button class="btn btn-primary btn-block" id="addCourseBtn"
 						type="button" onclick="openCourseModal()">Add Course</button>
-					<button class="btn btn-danger btn-block" id="removeCourseBtn">Remove
+					<button class="btn btn-danger btn-block" id="removeCourseBtn" onclick="removeDiv()">Remove
 						Course</button>
 				</div>
 			</div>
@@ -128,54 +138,12 @@
 				// Implement your save logic here
 				closeCourseModal();
 			}
-			$(document).ready(function() {
-			    // Function to load existing courses on page load
-			    loadCourses();
-			});
-
-			function loadCourses() {
-			    $.ajax({
-			        type: 'GET',
-			        url: 'CourseController',
-			        success: function(response) {
-			            $('#coursesDisplay').html(response); // Display courses
-			        },
-			        error: function() {
-			            alert('Error while loading courses.');
-			        }
-			    });
-			}
 			
-			function addNewCourse() {
-	            var courseTitle = $('#courseTitle').val(); // Assuming courseTitle is an input field
-	            var courseCode = $('#courseCode').val();
-
-	            if (courseTitle !== null && courseTitle.trim() !== '') {
-	                $.ajax({
-	                    type: 'POST',
-	                    url: 'CourseController',
-	                    data: {
-	                        courseTitle: courseTitle,
-	                        courseCode: courseCode
-	                    },
-	                    success: function(response) {
-	                        if (response === 'success') {
-	                            // If the course is successfully added on the server side,
-	                            // dynamically add it to the UI
-	                            $('#coursesContainer').append('<div class="course"><a href="UnitDashboard.jsp">' + courseTitle + '</a></div>');
-	                        } else {
-	                            alert('Failed to add the course.');
-	                        }
-	                    },
-	                    error: function() {
-	                        alert('Error while adding the course.');
-	                    }
-	                });
-	            } else {
-	                alert('Please enter a valid course name.');
-	            }
-	        }
-
+		    // Assuming an action removes the div
+		    function removeDiv() {
+		        document.getElementById('divToRemove').style.display = 'none';
+		    }
+			
 		</script>
 	</form>
 </body>

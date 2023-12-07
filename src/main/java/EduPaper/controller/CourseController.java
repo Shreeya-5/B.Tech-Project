@@ -1,10 +1,12 @@
 package EduPaper.controller;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +40,25 @@ public class CourseController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String courseTitle = request.getParameter("courseTitle");
+	    String courseCode = request.getParameter("courseCode");
 		
+	    HttpSession session = request.getSession();
+		userReg user = (userReg) session.getAttribute("loggedInUser");
+
+	    ACourse courseDAO = new ACourse();
+	    addCourse newCourse = new addCourse();
+	    newCourse.setCourseCode(courseCode);
+	    newCourse.setCourseName(courseTitle);
+	    newCourse.setDeptName(user.getDept());
+	    newCourse.setUserEmail(user.getEmail());
+	    
+	    List<addCourse> allCourses = courseDAO.getAllCourses(user.getEmail());
+	    session.setAttribute("allCourses", allCourses);
+	    RequestDispatcher dispatcher = request.getRequestDispatcher("CourseDashboard.jsp");
+	    dispatcher.forward(request, response);
+	    int result = courseDAO.create(newCourse);
+	    
 	}
 
 	/**

@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"%>
+<%@page import="EduPaper.model.addCourse"%>
 <%@page import="EduPaper.dao.ACourse"%>
 <%@page import="java.util.List"%>
-<%@page import="EduPaper.model.addCourse"%>
+<%@page import="EduPaper.model.userReg"%>
+<%@page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,20 +12,36 @@
 </head>
 <body>
 
-<% ACourse courseDAO = new ACourse();
-   List<addCourse> allCourses = (List<addCourse>) request.getAttribute("allCourses");
-   if (allCourses != null && !allCourses.isEmpty()) {
-       for (addCourse course : allCourses) {
-%>
-<div class="course">
-    <a href="UnitDashboard.jsp"><%= course.getCourseName() %></a>
-</div>
-<%   }
-   } else { %>
-<div>
-    <h2>No Courses Added</h2>
-</div>
-<% } %>
+<h1>Course List</h1>
+
+    <%
+    // Retrieve logged-in user details from the session
+    userReg loggedInUser = (userReg) session.getAttribute("loggedInUser");
+
+    // Retrieve courses for the logged-in user from the database
+    ACourse courseDAO = new ACourse();
+    List<addCourse> allCourses = courseDAO.getAllCourses(loggedInUser.getEmail());
+
+    if (allCourses != null && !allCourses.isEmpty()) {
+        // Display the list of courses
+        %>
+        <ul>
+            <%
+            for (addCourse course : allCourses) {
+                %>
+                <li><%= course.getCourseName() %> - <%= course.getCourseCode() %></li>
+                <%
+            }
+            %>
+        </ul>
+        <%
+    } else {
+        // If no courses found for the user
+        %>
+        <p>No courses added yet.</p>
+        <%
+    }
+    %>
 
 
 </body>

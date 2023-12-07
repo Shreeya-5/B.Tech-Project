@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,7 +54,7 @@ public class LoginController extends HttpServlet {
 		
 		if (lstreg != null && !lstreg.isEmpty()) {
             session.setAttribute("loggedInUser", lstreg.get(0));
-
+                	    
             // Redirect to a dashboard or desired page upon successful login
             response.sendRedirect("CourseDashboard.jsp");
         }

@@ -1,11 +1,9 @@
 package EduPaper.dao;
 
+import java.sql.*;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.*;
 
 public class QuestionPaperGenerator {
     public static void main(String[] args) {
@@ -14,46 +12,34 @@ public class QuestionPaperGenerator {
         ResultSet resultSet = null;
 
         try {
-            // Establishing a database connection
-            con = DataSource.getConnection();
+            // Load the JDBC driver
+            Class.forName("oracle.jdbc.OracleDriver");
 
-            // Creating a statement for executing SQL queries
+            // Establish the connection to the database
+			 con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","shreeya");
+
+            // Create a statement
             statement = con.createStatement();
 
-            // SQL query to retrieve all questions from QuestionBank table
-            String query = "SELECT * FROM QuestionBank";
-            
-            // Executing the query
-            resultSet = statement.executeQuery(query);
+            // Execute a query to retrieve data
+            String sqlQuery = "SELECT * FROM questionier";
+            resultSet = statement.executeQuery(sqlQuery);
 
-            // Displaying all questions
-            System.out.println("All Questions:");
-            if (!resultSet.isBeforeFirst()) {
-                System.out.println("No questions found in the QuestionBank table.");
-            } else {
-                while (resultSet.next()) {
-                    int questionNo = resultSet.getInt("QuestionNo");
-                    int unitNo = resultSet.getInt("UnitNo");
-                    String course = resultSet.getString("Course");
-                    String questionText = resultSet.getString("QuestionText");
-                    int marks = resultSet.getInt("Marks");
-                    String difficultyLevel = resultSet.getString("DifficultyLevel");
-
-                    System.out.println("Question No: " + questionNo);
-                    System.out.println("Unit No: " + unitNo);
-                    System.out.println("Course: " + course);
-                    System.out.println("Question: " + questionText);
-                    System.out.println("Marks: " + marks);
-                    System.out.println("Difficulty Level: " + difficultyLevel);
-                    System.out.println("---------------------------");
-                }
+            // Process the result set
+            while (resultSet.next()) {
+                // Retrieve data from each row
+                String column1Data = resultSet.getString("questionno");
+                // Get other columns similarly
+                
+                // Process retrieved data (print it in this example)
+                System.out.println("Column 1: " + column1Data);
+                // Process other columns similarly
             }
-
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
+            // Close resources
             try {
-                // Closing resources in the finally block
                 if (resultSet != null) resultSet.close();
                 if (statement != null) statement.close();
                 if (con != null) con.close();

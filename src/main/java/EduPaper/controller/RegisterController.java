@@ -39,9 +39,9 @@ public class RegisterController extends HttpServlet {
 		String pass=request.getParameter("pass");
 		String cpass=request.getParameter("cpass");
 		
-		userReg usermodel=new userReg(sname,email,dept,mobno,pass);
+		userReg user=new userReg(sname,email,mobno,pass,dept);
 		List<userReg> lstsreg=new LinkedList<>();
-		lstsreg.add(usermodel);
+		lstsreg.add(user);
 		registerDao regdao=new registerDao();
 		int i=regdao.Create(lstsreg);
 		if(i>0) {
