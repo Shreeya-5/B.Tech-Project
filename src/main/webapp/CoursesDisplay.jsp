@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"%>
 <%@page import="EduPaper.model.addCourse"%>
-<%@page import="EduPaper.dao.ACourse"%>
+<%@page import="EduPaper.dao.CourseDao"%>
 <%@page import="java.util.List"%>
 <%@page import="EduPaper.model.userReg"%>
 <%@page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
@@ -15,16 +16,16 @@
 <h1>Course List</h1>
 
     <%
-    // Retrieve logged-in user details from the session
-    userReg loggedInUser = (userReg) session.getAttribute("loggedInUser");
+        // Retrieve logged-in user details from the session
+        userReg loggedInUser = (userReg) session.getAttribute("loggedInUser");
 
-    // Retrieve courses for the logged-in user from the database
-    ACourse courseDAO = new ACourse();
-    List<addCourse> allCourses = courseDAO.getAllCourses(loggedInUser.getEmail());
+        // Retrieve courses for the logged-in user from the database
+        CourseDao courseDAO = new CourseDao();
+        List<addCourse> allCourses = courseDAO.getAllCourses(loggedInUser.getEmail());
 
-    if (allCourses != null && !allCourses.isEmpty()) {
-        // Display the list of courses
-        %>
+        if (allCourses != null && !allCourses.isEmpty()) {
+            // Display the list of courses
+    %>
         <ul>
             <%
             for (addCourse course : allCourses) {

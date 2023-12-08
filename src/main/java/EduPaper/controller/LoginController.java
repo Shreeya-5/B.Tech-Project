@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import EduPaper.dao.ACourse;
-import EduPaper.dao.registerDao;
+import EduPaper.dao.CourseDao;
+import EduPaper.dao.RegisterDao;
 import EduPaper.model.addCourse;
 import EduPaper.model.userLogin;
 import EduPaper.model.userReg;
@@ -49,7 +49,7 @@ public class LoginController extends HttpServlet {
 		List<userLogin> lstlogin=new LinkedList<>();
 		lstlogin.add(studlogin);
 
-		registerDao userReg=new registerDao();
+		RegisterDao userReg=new RegisterDao();
 		List<userReg> lstreg=userReg.validateData(lstlogin);
 		
 		if (lstreg != null && !lstreg.isEmpty()) {

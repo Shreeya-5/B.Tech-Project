@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import EduPaper.dao.registerDao;
+import EduPaper.dao.RegisterDao;
 import EduPaper.model.userReg;
 
 /**
@@ -42,7 +42,7 @@ public class RegisterController extends HttpServlet {
 		userReg user=new userReg(sname,email,mobno,pass,dept);
 		List<userReg> lstsreg=new LinkedList<>();
 		lstsreg.add(user);
-		registerDao regdao=new registerDao();
+		RegisterDao regdao=new RegisterDao();
 		int i=regdao.Create(lstsreg);
 		if(i>0) {
 			System.out.println("inserted successfully..");

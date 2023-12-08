@@ -18,7 +18,7 @@ public class QuestionPaperGenerator {
 			con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","shreeya");
 
 			// Create a statement
-			PreparedStatement pstate = con.prepareStatement("SELECT * FROM users");
+			PreparedStatement pstate = con.prepareStatement("SELECT * FROM unit");
 
 			// Execute a query to retrieve data
 			resultSet = pstate.executeQuery();
@@ -26,7 +26,7 @@ public class QuestionPaperGenerator {
 			// Process the result set
 			while (resultSet.next()) {
 				// Retrieve data from each row
-				String column1Data = resultSet.getString("user_email");
+				String column1Data = resultSet.getString("course_code");
 				// Get other columns similarly
 
 				// Process retrieved data (print it in this example)

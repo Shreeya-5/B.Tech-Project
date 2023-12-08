@@ -4,6 +4,7 @@
 <html>
 <%@ include file="UserProfile.jsp"%>
 <head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 <%@ include file="index.html"%>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>

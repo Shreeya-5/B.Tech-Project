@@ -8,7 +8,7 @@ import java.util.*;
 
 import EduPaper.model.*;
 
-public class registerDao {
+public class RegisterDao {
 	public int Create(List<userReg> lstsreg) {
 		int i=0;
 		userReg s=lstsreg.get(0);

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 <meta charset="ISO-8859-1">
 <title>Error</title>
 <%@ include file="navbar.jsp"%>

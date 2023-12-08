@@ -3,12 +3,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.*;
 
 import EduPaper.model.*;
 
-public class ACourse {
+public class CourseDao {
 
 	public int create(addCourse s) {
 		int i = 0;
@@ -70,5 +69,29 @@ public class ACourse {
             }
         }
         return courses;
+    }
+	
+	public boolean removeCourseByCode(String courseCode) {
+        boolean isRemoved = false;
+        Connection con = DataSource.getConnection();
+
+        try {
+            PreparedStatement pstate = con.prepareStatement("DELETE FROM course WHERE Course_code = ?");
+            pstate.setString(1, courseCode);
+
+            int rowsAffected = pstate.executeUpdate();
+            if (rowsAffected > 0) {
+                isRemoved = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return isRemoved;
     }
 }
