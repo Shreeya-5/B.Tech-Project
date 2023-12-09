@@ -45,7 +45,6 @@ public class UnitController extends HttpServlet {
 	    newUnit.setUnitNo(unitNo);
 	    newUnit.setCourseCode(courseCode);
 	    newUnit.setUnitName(unitName);
-	    System.out.println(newUnit.getCourseCode());
 	    int result = unitDao.create(newUnit);
 	    if (result > 0) {
 	        response.sendRedirect("UnitDashboard.jsp");
@@ -64,11 +63,13 @@ public class UnitController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+	    HttpSession session = request.getSession();
+
 		String unitNo = request.getParameter("unitNo");
-		
+		String courseCode = (String) session.getAttribute("courseCodeForUnits");
 	    
 		UnitDao unitDao = new UnitDao();
-		boolean isUnitRemoved = unitDao.removeUnit(unitNo);
+		boolean isUnitRemoved = unitDao.removeUnit(unitNo, courseCode);
 
 		if (isUnitRemoved) {
 			// Optionally, you can redirect to another page or send a success message
@@ -79,8 +80,6 @@ public class UnitController extends HttpServlet {
 			String script = "<script>showMessage('" + errorMessage + "');</script>";
 			response.getWriter().write(script);
 			response.sendRedirect("UnitDashboard.jsp");
-
 		}
 	}
-
 }

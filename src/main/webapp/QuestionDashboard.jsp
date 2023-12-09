@@ -2,6 +2,8 @@
 <html lang="en">
 <%@ include file="Popups.jsp"%>
 <head>
+<%@ include file="navbar.jsp" %>
+<%@ include file="index.html"%>s
 <link rel="icon" href="favicon.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,15 +14,12 @@
 	margin-top: 80px;
 }
 </style>
-<%@ include file="navbar.jsp" %>
-<%@ include file="index.html"%>
 <body>
 <div class="container">
     <div class="row">
         <div class="col-md-9">
             <!-- Content in the left part -->
-            <div class="Question">
-             <a >1. What is Computer?</a>
+            <div class="QuestionDisplay">
             </div>
         </div>
         <div class="col-md-3">

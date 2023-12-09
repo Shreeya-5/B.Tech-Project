@@ -20,7 +20,7 @@
 
 .coursesDisplay {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 }
 
 .course {
@@ -139,7 +139,7 @@
 		<div class="row">
 
 			<div class="col-md-9 ">
-
+			<h2><%=user.getDept() %></h2>
 				<!-- Content in the left part -->
 				<div class="coursesDisplay">
 					<%

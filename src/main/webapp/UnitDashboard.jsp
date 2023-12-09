@@ -17,28 +17,37 @@
 	margin-top: 80px;
 }
 
+.unitDisplay {
+	display: flex;
+	flex-direction: column;
+}
+
 .unit {
 	display: flex;
 	border-radius: 5px;
 	border: 1px;
+	margin: 10px;
 	background-color: #9EEBBF;
 	height: 80px;
 	width: 120px;
 	text-align: center;
-	align-items: center;
 	justify-content: center;
+	align-items: center;
 	text-decoration: none;
-}
-
-.unit a {
-	text-align: center;
 	color: black;
+	background-color: #9EEBBF;
+	border-radius: 5px;
+	background-color: #9EEBBF;
+	cursor: pointer;
 }
 
-.unit a:hover {
+.unit:hover {
 	text-decoration: none;
 	color: black;
 	font-weight: bold;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1)
+		inset;
+	position: relative;
 }
 </style>
 <body>
