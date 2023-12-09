@@ -9,7 +9,7 @@ import EduPaper.model.*;
 
 public class UnitDao {
 
-	public int create(addUnit s) {
+	public int createUnit(addUnit s) {
 		int i = 0;
 		Connection con = DataSource.getConnection();
 
@@ -43,7 +43,7 @@ public class UnitDao {
 			ResultSet rs = pstate.executeQuery();
 			while (rs.next()) {
 				// Retrieve data from each row
-				String unitNo = rs.getString("unit_name");
+				String unitNo = rs.getString("unit_No");
 				String courseCode = rs.getString("course_code");
 				String unitName = rs.getString("unit_name");
 
@@ -68,51 +68,34 @@ public class UnitDao {
 		return units;
 	}
 
-	public boolean removeUnit(String unitNo, String coursecode) {
+	public boolean removeAllUnits(String courseCode) {
+		
+		List<addUnit> allUnits =  getAllUnits(courseCode);
 		boolean isRemoved = false;
 		Connection con = DataSource.getConnection();
 
-		try {
-			PreparedStatement pstate = con.prepareStatement("DELETE FROM unit WHERE Unit_No = ? and course_code = ?");
-			pstate.setString(1, unitNo);
-			pstate.setString(2, coursecode);
-
-			int rowsAffected = pstate.executeUpdate();
-			if (rowsAffected > 0) {
-				isRemoved = true;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
+		if (!allUnits.isEmpty() && allUnits != null) {
 			try {
-				con.close();
+				PreparedStatement pstate = con.prepareStatement("DELETE FROM unit WHERE course_code = ?");
+				pstate.setString(1, courseCode);
+
+				int rowsAffected = pstate.executeUpdate();
+				if (rowsAffected > 0) {
+					isRemoved = true;
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+			} finally {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
-		return isRemoved;
-	}
-
-	public boolean removeAllUnits(String courseCode) {
-		boolean isRemoved = false;
-		Connection con = DataSource.getConnection();
-
-		try {
-			PreparedStatement pstate = con.prepareStatement("DELETE FROM unit WHERE course_code = ?");
-			pstate.setString(1, courseCode);
-
-			int rowsAffected = pstate.executeUpdate();
-			if (rowsAffected > 0) {
-				isRemoved = true;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+		
+		else {
+			isRemoved = true;
 		}
 		return isRemoved;
 	}

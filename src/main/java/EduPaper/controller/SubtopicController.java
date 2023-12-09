@@ -8,24 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import EduPaper.dao.CourseDao;
-import EduPaper.dao.QuestionDao;
-import EduPaper.dao.UnitDao;
-import EduPaper.model.addCourse;
-import EduPaper.model.addQue;
-import EduPaper.model.userReg;
+import EduPaper.dao.SubtopicDao;
+import EduPaper.model.addSubtopic;
 
 /**
- * Servlet implementation class QuestionController
+ * Servlet implementation class SubtopicController
  */
-@WebServlet("/QuestionController")
-public class QuestionController extends HttpServlet {
+@WebServlet("/SubtopicController")
+public class SubtopicController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public QuestionController() {
+	public SubtopicController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -34,30 +30,25 @@ public class QuestionController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String queText = request.getParameter("question");
-		String queType = request.getParameter("queType");
-		int marks = Integer.parseInt(request.getParameter("Marks"));
-		String diffLevel = request.getParameter("Difficulty");
-
+		String subtopicName = request.getParameter("subtopicName");
+		
 		HttpSession session = request.getSession();
 		String courseCode = (String) session.getAttribute("courseCodeForSubtopics");
 		String unitNo = (String) session.getAttribute("unitNoForSubtopics");
-		int id = (int) session.getAttribute("subtopicNoForQuestions");
-		System.out.println(id);
-		
-		QuestionDao questionDao = new QuestionDao();
-		addQue que = new addQue(id, queText, marks, diffLevel, queType, unitNo, courseCode);
 
+		SubtopicDao subtopicDao = new SubtopicDao();
+		addSubtopic subtopic = new addSubtopic(subtopicName, unitNo, courseCode);
+		System.out.println(unitNo);
 
-		int result = questionDao.createQue(que);
+		int result = subtopicDao.createSubtopic(subtopic);
 		if (result>0) {
-			response.sendRedirect("QuestionDashboard.jsp");
+			response.sendRedirect("SubtopicDashboard.jsp");
 		}
 		else {
 			String errorMessage = "Failed to add the course. Please try again.";
 			String script = "<script>showMessage('" + errorMessage + "');</script>";
 			response.getWriter().write(script);
-			response.sendRedirect("QuestionDashboard.jsp");
+			response.sendRedirect("SubtopicDashboard.jsp");
 		}
 
 	}
@@ -66,7 +57,12 @@ public class QuestionController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
+		int subtopicId = Integer.parseInt(request.getParameter("subtopicNoForQuestions"));
 
+		HttpSession session = request.getSession();
+		// Action to get course code for units
+		session.setAttribute("subtopicNoForQuestions", subtopicId);
+		response.sendRedirect("QuestionDashboard.jsp");
+
+	}
 }

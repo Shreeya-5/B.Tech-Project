@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="index.html"%>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <meta charset="ISO-8859-1">
 <meta charset="utf-8">
 <title>Login</title>
-<%@ include file="index.html"%>
 <style>
 .card {
 	border-radius: 1rem;

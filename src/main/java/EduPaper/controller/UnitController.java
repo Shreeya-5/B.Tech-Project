@@ -8,11 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import EduPaper.dao.CourseDao;
 import EduPaper.dao.UnitDao;
-import EduPaper.model.addCourse;
 import EduPaper.model.addUnit;
-import EduPaper.model.userReg;
 
 /**
  * Servlet implementation class UnitController
@@ -35,27 +32,27 @@ public class UnitController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String unitNo = request.getParameter("unitNo");
-	    String unitName = request.getParameter("unitName");
-	    
-	    HttpSession session = request.getSession();
+		String unitName = request.getParameter("unitName");
+
+		HttpSession session = request.getSession();
 		String courseCode = (String) session.getAttribute("courseCodeForUnits");
 
-	    UnitDao unitDao = new UnitDao();
-	    addUnit newUnit = new addUnit();
-	    newUnit.setUnitNo(unitNo);
-	    newUnit.setCourseCode(courseCode);
-	    newUnit.setUnitName(unitName);
-	    int result = unitDao.create(newUnit);
-	    if (result > 0) {
-	        response.sendRedirect("UnitDashboard.jsp");
-	    }
-	    else {
-	    	String errorMessage = "Failed to add the unit. Please try again.";
-            String script = "<script>showMessage('" + errorMessage + "');</script>";
-            response.getWriter().write(script);
+		UnitDao unitDao = new UnitDao();
+		addUnit newUnit = new addUnit();
+		newUnit.setUnitNo(unitNo);
+		newUnit.setCourseCode(courseCode);
+		newUnit.setUnitName(unitName);
+		int result = unitDao.createUnit(newUnit);
+		if (result > 0) {
 			response.sendRedirect("UnitDashboard.jsp");
-	    }
-		
+		}
+		else {
+			String errorMessage = "Failed to add the unit. Please try again.";
+			String script = "<script>showMessage('" + errorMessage + "');</script>";
+			response.getWriter().write(script);
+			response.sendRedirect("UnitDashboard.jsp");
+		}
+
 	}
 
 	/**
@@ -63,23 +60,15 @@ public class UnitController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	    HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 
-		String unitNo = request.getParameter("unitNo");
-		String courseCode = (String) session.getAttribute("courseCodeForUnits");
-	    
-		UnitDao unitDao = new UnitDao();
-		boolean isUnitRemoved = unitDao.removeUnit(unitNo, courseCode);
-
-		if (isUnitRemoved) {
-			// Optionally, you can redirect to another page or send a success message
-			response.sendRedirect("UnitDashboard.jsp");
-		} else {
-			// Display an error message in the modal using JavaScript
-			String errorMessage = "Failed to remove the unit. Please try again.";
-			String script = "<script>showMessage('" + errorMessage + "');</script>";
-			response.getWriter().write(script);
-			response.sendRedirect("UnitDashboard.jsp");
-		}
+		// Action to get course code for units
+		String unitNoForSubtopics = request.getParameter("unitNoForSubtopics");
+		String courseCodeForSubtopics = request.getParameter("courseCodeForSubtopics");
+		System.out.println(unitNoForSubtopics);
+		session.setAttribute("unitNoForSubtopics", unitNoForSubtopics);
+		session.setAttribute("courseCodeForSubtopics", courseCodeForSubtopics);
+		
+		response.sendRedirect("SubtopicDashboard.jsp");
 	}
 }

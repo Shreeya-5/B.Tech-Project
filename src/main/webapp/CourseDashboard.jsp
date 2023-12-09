@@ -5,13 +5,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<%@ include file="index.html"%>
+<%@ include file="navbar.jsp"%>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Course Management</title>
-<%@ include file="Popups.jsp"%>
-<%@ include file="index.html"%>
-<%@ include file="navbar.jsp"%>
 </head>
 <style>
 .container {
@@ -180,13 +179,6 @@
 			</div>
 		</div>
 	</div>
-
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		function openCourseModal() {
 			document.getElementById('courseModal').style.display = 'block';

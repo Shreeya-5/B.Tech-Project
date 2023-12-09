@@ -3,13 +3,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.*;
 
 import EduPaper.model.*;
 
 public class RegisterDao {
-	public int Create(List<userReg> lstsreg) {
+	public int CreateUser(List<userReg> lstsreg) {
 		int i=0;
 		userReg s=lstsreg.get(0);
 		Connection con=DataSource.getConnection();
@@ -36,7 +35,6 @@ public class RegisterDao {
 		return i;
 	}
 	public List<userReg> validateData(List<userLogin> lstlogin) {
-		boolean b=false;
 		userLogin lobj=lstlogin.get(0);
 		List<userReg> lstreg=null;
 		Connection con=DataSource.getConnection();
@@ -46,7 +44,6 @@ public class RegisterDao {
 			pstate.setString(2, lobj.getPassword());
 			ResultSet rs = pstate.executeQuery();			
 			if (rs.next()) {
-				b = true;
 				lstreg=new LinkedList<userReg>();
 				userReg s=new userReg(rs.getString(2),rs.getString(1),rs.getString(3),rs.getString(4),rs.getString(5));
 				lstreg.add(s);

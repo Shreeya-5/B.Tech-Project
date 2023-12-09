@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<%@ include file="index.html"%>
+<%@ include file="navbar.jsp"%>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Course Management</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
-/* Custom CSS to expand dropdown on hover */
 .btn-group:hover .dropdown-menu {
 	display: block;
 }
@@ -19,9 +18,6 @@
 </style>
 </head>
 <body>
-
-	<%@ include file="navbar.jsp"%>
-
 	<div class="container">
 		<div class="row">
 			<div class="col-md-9">
@@ -50,12 +46,5 @@
 			</div>
 		</div>
 	</div>
-
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </body>
 </html>

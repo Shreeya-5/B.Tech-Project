@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import EduPaper.dao.CourseDao;
-import EduPaper.dao.UnitDao;
 import EduPaper.model.addCourse;
 import EduPaper.model.userReg;
 
@@ -35,7 +34,7 @@ public class CourseController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String courseTitle = request.getParameter("courseTitle");
 		String courseCode = request.getParameter("courseCode");
-		
+
 		HttpSession session = request.getSession();
 		userReg user = (userReg) session.getAttribute("loggedInUser");
 
@@ -46,14 +45,14 @@ public class CourseController extends HttpServlet {
 		newCourse.setDeptName(user.getDept());
 		newCourse.setUserEmail(user.getEmail());
 
-		int result = courseDAO.create(newCourse);
+		int result = courseDAO.createCourse(newCourse);
 		if (result>0) {
 			response.sendRedirect("CourseDashboard.jsp");
 		}
 		else {
 			String errorMessage = "Failed to add the course. Please try again.";
-            String script = "<script>showMessage('" + errorMessage + "');</script>";
-            response.getWriter().write(script);
+			String script = "<script>showMessage('" + errorMessage + "');</script>";
+			response.getWriter().write(script);
 			response.sendRedirect("CourseDashboard.jsp");
 		}
 
@@ -64,36 +63,33 @@ public class CourseController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-	    CourseDao courseDAO = new CourseDao();
-	    UnitDao unitDao = new UnitDao();
-	    boolean isCourseRemoved = false;
+		CourseDao courseDAO = new CourseDao();
+		boolean isCourseRemoved = false;
 
-	    String action = request.getParameter("action");
-	    
-	    if (action != null && action.equals("removeCourse")) {
-	        // Action to remove the course
-	        String courseCodeToRemove = request.getParameter("courseCode");
-	        boolean removeAllUnits = unitDao.removeAllUnits(courseCodeToRemove);
-	        if (removeAllUnits) {
-		        isCourseRemoved = courseDAO.removeCourseByCode(courseCodeToRemove);
-	        }
+		String action = request.getParameter("action");
 
-	        if (isCourseRemoved) {
-	            // Course removed successfully
-	            response.sendRedirect("CourseDashboard.jsp");
-	        } else {
-	            // Display an error message in the modal using JavaScript
-	            String errorMessage = "Failed to remove the course. Please try again.";
-	            String script = "<script>showMessage('" + errorMessage + "');</script>";
-	            response.getWriter().write(script);
-	            response.sendRedirect("CourseDashboard.jsp");
+		if (action != null && action.equals("removeCourse")) {
+			// Action to remove the course
+			String courseCodeToRemove = request.getParameter("courseCode");
 
-	        }
-	    } else {
-	        // Action to get course code for units
-	        String courseCodeForUnits = request.getParameter("courseCodeForUnits");
-	        session.setAttribute("courseCodeForUnits", courseCodeForUnits);
-	        response.sendRedirect("UnitDashboard.jsp");
-	    }
+			isCourseRemoved = courseDAO.removeCourseByCode(courseCodeToRemove);
+
+			if (isCourseRemoved) {
+				// Course removed successfully
+				response.sendRedirect("CourseDashboard.jsp");
+			} else {
+				// Display an error message in the modal using JavaScript
+				String errorMessage = "Failed to remove the course. Please try again.";
+				String script = "<script>showMessage('" + errorMessage + "');</script>";
+				response.getWriter().write(script);
+				response.sendRedirect("CourseDashboard.jsp");
+
+			}
+		} else {
+			// Action to get course code for units
+			String courseCodeForUnits = request.getParameter("courseCodeForUnits");
+			session.setAttribute("courseCodeForUnits", courseCodeForUnits);
+			response.sendRedirect("UnitDashboard.jsp");
+		}
 	}
 }

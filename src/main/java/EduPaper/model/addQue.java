@@ -1,65 +1,107 @@
 package EduPaper.model;
 
 public class addQue {
-	private int questionNo;
-	private int unitNo;
-	private String course;
-	private String questionText;
-	private int marks;
-	private String difficultyLevel;
-	private String queType;
-	
-	public addQue(int questionNo, int unitNo, String course, String questionText, int marks, String difficultyLevel,
-			String queType) {
-		this.questionNo = questionNo;
-		this.unitNo = unitNo;
-		this.course = course;
-		this.questionText = questionText;
+    private int queNo;
+    private int subtopicId;
+    private String unitNo;
+    private String courseCode;
+    private String quesText;
+    private int marks;
+    private String diffLevel;
+    private String queType;
+    
+
+    public addQue() {
+		super();
+	}
+
+    
+	public addQue(int subtopicId, String quesText, int marks, String diffLevel, String queType, String unitNo,
+			String courseCode) {
+		super();
+		this.subtopicId = subtopicId;
+		this.quesText = quesText;
 		this.marks = marks;
-		this.difficultyLevel = difficultyLevel;
+		this.diffLevel = diffLevel;
 		this.queType = queType;
-	}
-	
-	public int getQuestionNo() {
-		return questionNo;
-	}
-	public void setQuestionNo(int questionNo) {
-		this.questionNo = questionNo;
-	}
-	public int getUnitNo() {
-		return unitNo;
-	}
-	public void setUnitNo(int unitNo) {
 		this.unitNo = unitNo;
+		this.courseCode = courseCode;
 	}
-	public String getCourse() {
-		return course;
-	}
-	public void setCourse(String course) {
-		this.course = course;
-	}
-	public String getQuestionText() {
-		return questionText;
-	}
-	public void setQuestionText(String questionText) {
-		this.questionText = questionText;
-	}
-	public int getMarks() {
-		return marks;
-	}
-	public void setMarks(int marks) {
-		this.marks = marks;
-	}
-	public String getDifficultyLevel() {
-		return difficultyLevel;
-	}
-	public void setDifficultyLevel(String difficultyLevel) {
-		this.difficultyLevel = difficultyLevel;
-	}
-	public String getQueType() {
-		return queType;
-	}
-	public void setQueType(String queType) {
-		this.queType = queType;
-	}
+
+
+	public addQue(int queNo, int subtopicId, String quesText, int marks, String diffLevel, String queType,
+                  String unitNo, String courseCode) {
+        this.queNo = queNo;
+        this.subtopicId = subtopicId;
+        this.quesText = quesText;
+        this.marks = marks;
+        this.diffLevel = diffLevel;
+        this.queType = queType;
+        this.unitNo = unitNo;
+        this.courseCode = courseCode;
+    }
+
+    public int getQueNo() {
+        return queNo;
+    }
+
+    public void setQueNo(int queNo) {
+        this.queNo = queNo;
+    }
+
+    public int getSubtopicId() {
+        return subtopicId;
+    }
+
+    public void setSubtopicId(int subtopicId) {
+        this.subtopicId = subtopicId;
+    }
+
+    public String getQuesText() {
+        return quesText;
+    }
+
+    public void setQuesText(String quesText) {
+        this.quesText = quesText;
+    }
+
+    public int getMarks() {
+        return marks;
+    }
+
+    public void setMarks(int marks) {
+        this.marks = marks;
+    }
+
+    public String getDiffLevel() {
+        return diffLevel;
+    }
+
+    public void setDiffLevel(String diffLevel) {
+        this.diffLevel = diffLevel;
+    }
+
+    public String getQueType() {
+        return queType;
+    }
+
+    public void setQueType(String queType) {
+        this.queType = queType;
+    }
+
+    public String getUnitNo() {
+        return unitNo;
+    }
+
+    public void setUnitNo(String unitNo) {
+        this.unitNo = unitNo;
+    }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
+    }
 }

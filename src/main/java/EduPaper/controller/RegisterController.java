@@ -43,7 +43,7 @@ public class RegisterController extends HttpServlet {
 		List<userReg> lstsreg=new LinkedList<>();
 		lstsreg.add(user);
 		RegisterDao regdao=new RegisterDao();
-		int i=regdao.Create(lstsreg);
+		int i=regdao.CreateUser(lstsreg);
 		if(i>0) {
 			System.out.println("inserted successfully..");
 			response.sendRedirect("Login.jsp");

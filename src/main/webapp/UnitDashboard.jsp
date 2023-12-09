@@ -3,15 +3,14 @@
 <%@page import="EduPaper.model.addUnit"%>
 <%@page import="EduPaper.dao.UnitDao"%>
 <html lang="en">
-<%@ include file="Popups.jsp"%>
 <head>
+<%@ include file="index.html"%>
+<%@ include file="navbar.jsp"%>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Unit Management</title>
 </head>
-<%@ include file="index.html"%>
-<%@ include file="navbar.jsp"%>
 <style>
 .container {
 	margin-top: 80px;
@@ -58,7 +57,6 @@
 
 		<!-- Add Unit Modal -->
 		<form action="UnitController" method="get">
-
 			<div class="modal" id="unitModal">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -90,36 +88,6 @@
 			</div>
 		</form>
 
-		<!-- Remove Unit Modal -->
-		<form action="UnitController" method="post">
-			<input type="hidden" name="action" value="removeUnit">
-			<div class="modal" id="removeUnitModal">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title">Remove Unit</h4>
-							<button type="button" class="close"
-								onclick="closeRemoveUnitModal()">&times;</button>
-						</div>
-						<div class="modal-body">
-							<div class="form-group">
-								<label for="unitNo">Unit No:</label> <input type="text"
-									class="form-control" id="unitNo" name="unitNo"
-									placeholder="Enter Unit No">
-							</div>
-
-						</div>
-						<div class="modal-footer">
-							<button type="submit" class="btn btn-success"
-								onclick="removeUnit()">Submit</button>
-							<button type="button" class="btn btn-danger"
-								onclick="closeRemoveUnitModal()">Close</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</form>
-
 		<!-- Modal for displaying messages -->
 		<div class="modal" id="messageModal">
 			<div class="modal-dialog">
@@ -140,19 +108,20 @@
 				<h2><%=courseCode%></h2>
 				<!-- Content in the left part -->
 				<div class="unitsDisplay">
-				<%
+					<%
 					UnitDao unitDao = new UnitDao();
 					List<addUnit> units = unitDao.getAllUnits(courseCode);
 
 					if (units != null && !units.isEmpty()) {
 						for (addUnit unit : units) {
 					%>
-					<form id="unitNoForm<%=unit.getUnitNo()%>"
-						action="QuestionDashboard.jsp" method="post">
-						<input type="hidden" name="unitNo"
-							value="<%=unit.getUnitNo()%>"> <a
-							onclick="submitUnit('<%=unit.getUnitNo()%>')"
-							class="unit" id="unit_<%=unit.getUnitNo()%>"> <%=unit.getUnitName()%>
+					<form id="unitNoForm<%=unit.getUnitNo()%>" action="UnitController"
+						method="post">
+						<input type="hidden" name="unitNoForSubtopics" value="<%=unit.getUnitNo()%>">
+						<input type="hidden" name="courseCodeForSubtopics"
+							value="<%=unit.getCourseCode()%>"> <a
+							onclick="submitUnit('<%=unit.getUnitNo()%>')" class="unit"
+							id="unit_<%=unit.getUnitNo()%>"> <%=unit.getUnitName()%>
 							<button type="button" style="display: none;"></button>
 						</a>
 					</form>
@@ -176,17 +145,9 @@
 					Paper</button>
 				<button class="btn btn-info btn-block" id="previousPaperBtn">Previous
 					Paper</button>
-				<button class="btn btn-danger btn-block" id="removeUnitBtn" onclick="openRemoveUnitModal()">Remove
-					Unit</button>
 			</div>
 		</div>
 	</div>
-
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<script>
 		function openUnitModal() {
 			document.getElementById('unitModal').style.display = 'block';
@@ -218,9 +179,9 @@
 			document.getElementById('modalMessage').innerText = message;
 			$('#messageModal').modal('show'); // Show the modal
 		}
-		
+
 		function submitUnit(unitNo) {
-			document.getElementById('unitNoForm' + unitNo).submit();	
+			document.getElementById('unitNoForm' + unitNo).submit();
 		}
 	</script>
 
