@@ -77,40 +77,37 @@ public class CourseDao {
 		boolean isSubtopicsRemoved = false;
 		boolean isCourseRemoved = false;
 		Connection con = DataSource.getConnection();
-		
+
 		QuestionDao queDao = new QuestionDao();
 		isQuestionsRemoved = queDao.deleteQueByCourse(courseCode);
-		
-		if (isQuestionsRemoved) {
-			SubtopicDao subtopicDao = new SubtopicDao();
-			isSubtopicsRemoved = subtopicDao.removeAllSubtopicsForCourse(courseCode);
-			
-			if (isSubtopicsRemoved) {
-				UnitDao unitDao = new UnitDao();
-				isUnitsRemoved = unitDao.removeAllUnits(courseCode);
-				
-				if (isUnitsRemoved) {					
-					try {
-						PreparedStatement pstate = con.prepareStatement("DELETE FROM course WHERE Course_code = ?");
-						pstate.setString(1, courseCode);
 
-						int rowsAffected = pstate.executeUpdate();
-						if (rowsAffected > 0) {
-							isCourseRemoved = true;
-						}
+		SubtopicDao subtopicDao = new SubtopicDao();
+		isSubtopicsRemoved = subtopicDao.removeAllSubtopicsForCourse(courseCode);
+
+		if (isSubtopicsRemoved) {
+			UnitDao unitDao = new UnitDao();
+			isUnitsRemoved = unitDao.removeAllUnits(courseCode);
+
+			if (isUnitsRemoved) {					
+				try {
+					PreparedStatement pstate = con.prepareStatement("DELETE FROM course WHERE Course_code = ?");
+					pstate.setString(1, courseCode);
+
+					int rowsAffected = pstate.executeUpdate();
+					if (rowsAffected > 0) {
+						isCourseRemoved = true;
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					try {
+						con.close();
 					} catch (SQLException e) {
 						e.printStackTrace();
-					} finally {
-						try {
-							con.close();
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
 					}
-				} 
-			}
+				}
+			} 
 		}
-		
 		return isCourseRemoved;
 	}
 }
