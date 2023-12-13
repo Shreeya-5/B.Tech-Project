@@ -22,7 +22,7 @@
 		<div class="error">
 			<div class="alert alert-danger">
 				<div style="text-align: center;">
-					<strong><h1>Error!</h1></strong><br>
+					<h1><strong>Error!</strong></h1><br>
 				</div>
 				<h1 style="text-align: center;">Something Went Wrong</h1>
 			</div>

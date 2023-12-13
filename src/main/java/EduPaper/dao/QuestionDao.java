@@ -9,7 +9,7 @@ import EduPaper.model.*;
 
 public class QuestionDao {
 
-	public int createQue(addQue que) {
+	public int createQue(AddQue que) {
 		int i = 0;
 		Connection con = DataSource.getConnection();
 
@@ -38,8 +38,8 @@ public class QuestionDao {
 		return i;
 	}
 
-	public List<addQue> getAllQue(int subtopicId) {
-		List<addQue> ques = new ArrayList<>();
+	public List<AddQue> getAllQue(int subtopicId) {
+		List<AddQue> ques = new ArrayList<>();
 		Connection con = DataSource.getConnection();
 		try {
 			PreparedStatement pstate = con.prepareStatement("select * from questionbank where subtopic_id =?");
@@ -58,7 +58,7 @@ public class QuestionDao {
 				String courseCode = rs.getString("course_code");
 
 				// Create an addCourse object and set its attributes
-				addQue que = new addQue(queNo, subtopicNo, quesText, marks, diffLevel, queType, unitNo, courseCode);
+				AddQue que = new AddQue(queNo, subtopicNo, quesText, marks, diffLevel, queType, unitNo, courseCode);
 
 				// Add the course object to the courses list
 				ques.add(que);
@@ -75,8 +75,8 @@ public class QuestionDao {
 		return ques;
 	}
 
-	public List<addQue> getAllQueByCourse(String code) {
-		List<addQue> ques = new ArrayList<>();
+	public List<AddQue> getAllQueByCourse(String code) {
+		List<AddQue> ques = new ArrayList<>();
 		Connection con = DataSource.getConnection();
 		try {
 			PreparedStatement pstate = con.prepareStatement("select * from questionbank where course_code =?");
@@ -95,7 +95,7 @@ public class QuestionDao {
 				String courseCode = rs.getString("course_code");
 
 				// Create an addCourse object and set its attributes
-				addQue que = new addQue(queNo, subtopicNo, quesText, marks, diffLevel, queType, unitNo, courseCode);
+				AddQue que = new AddQue(queNo, subtopicNo, quesText, marks, diffLevel, queType, unitNo, courseCode);
 
 				// Add the course object to the courses list
 				ques.add(que);
@@ -113,7 +113,7 @@ public class QuestionDao {
 	}
 
 	public boolean deleteQueByCourse(String courseCode) {
-		List<addQue> allQues =  getAllQueByCourse(courseCode);
+		List<AddQue> allQues =  getAllQueByCourse(courseCode);
 		boolean isDeleted = false;
 		Connection con = DataSource.getConnection();
 

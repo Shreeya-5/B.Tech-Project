@@ -1,12 +1,12 @@
 package EduPaper.model;
 
-public class addSubtopic {
+public class AddSubtopic {
 	private int subtopicId;
     private String subtopicName;
     private String unitNo;
     private String courseCode;
     
-	public addSubtopic(int subtopicId, String subtopicName, String unitNo, String courseCode) {
+	public AddSubtopic(int subtopicId, String subtopicName, String unitNo, String courseCode) {
 		super();
 		this.subtopicId = subtopicId;
 		this.subtopicName = subtopicName;
@@ -14,14 +14,14 @@ public class addSubtopic {
 		this.courseCode = courseCode;
 	}
 	
-	public addSubtopic(String subtopicName, String unitNo, String courseCode) {
+	public AddSubtopic(String subtopicName, String unitNo, String courseCode) {
 		super();
 		this.subtopicName = subtopicName;
 		this.unitNo = unitNo;
 		this.courseCode = courseCode;
 	}
 	
-	public addSubtopic() {
+	public AddSubtopic() {
 		// TODO Auto-generated constructor stub
 	}
 

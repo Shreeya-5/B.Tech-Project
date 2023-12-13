@@ -1,50 +1,65 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<%@ include file="index.html"%>
-<%@ include file="navbar.jsp"%>
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Course Management</title>
-<style>
-.btn-group:hover .dropdown-menu {
-	display: block;
-}
-
-.container {
-	margin-top: 80px;
-}
-</style>
+    <!-- Add necessary imports, CSS links, and other meta tags -->
+    <title>Generate Paper</title>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-9">
-				<!-- Content in the left part -->
-				<h3>Main Content</h3>
-				<p>This is the main content of the page.</p>
-			</div>
-			<div class="col-md-3">
-				<!-- Rightmost part with three buttons -->
-				<h3>Actions</h3>
-				<div class="btn-group-vertical" role="group">
-					<!-- Courses button with dropdown menu -->
-					<div class="btn-group">
-						<button class="btn btn-primary" type="button">Courses</button>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">Course 1</a> <a
-								class="dropdown-item" href="#">Course 2</a> <a
-								class="dropdown-item" href="#">Course 3</a>
-						</div>
-					</div>
-					<!-- Explore button -->
-					<button class="btn btn-success" id="exploreBtn">Explore</button>
-					<!-- Add button -->
-					<button class="btn btn-info" id="addBtn">Add</button>
-				</div>
-			</div>
-		</div>
-	</div>
+    <h1>Generate Paper</h1>
+
+    <!-- Unit Selection Section -->
+    <h2>Select Units</h2>
+    <select id="unitSelection" multiple onchange="loadSubtopics()">
+        <!-- Populate options dynamically using JavaScript or server-side logic -->
+        <option value="unit1">Unit 1</option>
+        <option value="unit2">Unit 2</option>
+        <!-- Add more units as needed -->
+    </select>
+
+    <!-- Subtopic Selection Section -->
+    <h2>Select Subtopics</h2>
+    <select id="subtopicSelection" multiple onchange="loadQuestions()">
+        <!-- Subtopic options will be loaded dynamically based on unit selection -->
+    </select>
+
+    <!-- Questions Section -->
+    <h2>Questions</h2>
+    <div id="questionList">
+        <!-- Questions will be loaded dynamically based on subtopic selection -->
+    </div>
+
+    <!-- Generate Paper Button -->
+    <button onclick="generatePaper()">Generate Paper</button>
+
+    <!-- Include necessary scripts -->
+    <script>
+        function loadSubtopics() {
+            var selectedUnits = Array.from(document.getElementById("unitSelection").selectedOptions).map(option => option.value);
+
+            // Perform an AJAX request to fetch subtopics for the selected units
+            // Update the 'subtopicSelection' dropdown with subtopic options based on selected units
+            // Example: Use XMLHttpRequest or fetch API for the AJAX request
+        }
+
+        function loadQuestions() {
+            var selectedSubtopics = Array.from(document.getElementById("subtopicSelection").selectedOptions).map(option => option.value);
+
+            // Perform an AJAX request to fetch questions for the selected subtopics
+            // Update the 'questionList' div with question options, marks, question type, and difficulty level fields
+            // Example: Use XMLHttpRequest or fetch API for the AJAX request
+        }
+
+        function generatePaper() {
+            // Gather selected questions, marks, question type, difficulty level, etc.
+            // Submit these details to your server-side logic (Servlet or Controller) to generate the paper
+            // This can be done using AJAX or by submitting a form to your server
+        }
+
+        // Call the initial loading function or populate initial data onload if needed
+        window.onload = function() {
+            // Add code here to load initial data or perform initial actions
+        };
+    </script>
 </body>
 </html>

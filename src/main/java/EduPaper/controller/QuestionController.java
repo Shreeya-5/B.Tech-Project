@@ -11,9 +11,9 @@ import javax.servlet.http.HttpSession;
 import EduPaper.dao.CourseDao;
 import EduPaper.dao.QuestionDao;
 import EduPaper.dao.UnitDao;
-import EduPaper.model.addCourse;
-import EduPaper.model.addQue;
-import EduPaper.model.userReg;
+import EduPaper.model.AddCourse;
+import EduPaper.model.AddQue;
+import EduPaper.model.UserReg;
 
 /**
  * Servlet implementation class QuestionController
@@ -46,7 +46,7 @@ public class QuestionController extends HttpServlet {
 		System.out.println(id);
 		
 		QuestionDao questionDao = new QuestionDao();
-		addQue que = new addQue(id, queText, marks, diffLevel, queType, unitNo, courseCode);
+		AddQue que = new AddQue(id, queText, marks, diffLevel, queType, unitNo, courseCode);
 
 
 		int result = questionDao.createQue(que);

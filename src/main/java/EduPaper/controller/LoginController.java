@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import EduPaper.dao.RegisterDao;
-import EduPaper.model.userLogin;
-import EduPaper.model.userReg;
+import EduPaper.model.UserLogin;
+import EduPaper.model.UserReg;
 
 /**
  * Servlet implementation class LoginController
@@ -42,12 +42,12 @@ public class LoginController extends HttpServlet {
 		String email=request.getParameter("email");
 		String password=request.getParameter("pass");
 
-		userLogin studlogin=new userLogin(email,password);
-		List<userLogin> lstlogin=new LinkedList<>();
+		UserLogin studlogin=new UserLogin(email,password);
+		List<UserLogin> lstlogin=new LinkedList<>();
 		lstlogin.add(studlogin);
 
 		RegisterDao userReg=new RegisterDao();
-		List<userReg> lstreg=userReg.validateData(lstlogin);
+		List<UserReg> lstreg=userReg.validateData(lstlogin);
 		
 		if (lstreg != null && !lstreg.isEmpty()) {
             session.setAttribute("loggedInUser", lstreg.get(0));

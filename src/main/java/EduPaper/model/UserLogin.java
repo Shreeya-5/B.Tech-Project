@@ -1,9 +1,9 @@
 package EduPaper.model;
 
-public class userLogin {
+public class UserLogin {
 	private String email;
 	private  String password;
-	public userLogin(String email, String password) {
+	public UserLogin(String email, String password) {
 		super();
 		this.email = email;
 		this.password = password;

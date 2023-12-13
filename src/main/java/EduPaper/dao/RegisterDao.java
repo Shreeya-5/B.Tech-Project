@@ -8,9 +8,9 @@ import java.util.*;
 import EduPaper.model.*;
 
 public class RegisterDao {
-	public int CreateUser(List<userReg> lstsreg) {
+	public int CreateUser(List<UserReg> lstsreg) {
 		int i=0;
-		userReg s=lstsreg.get(0);
+		UserReg s=lstsreg.get(0);
 		Connection con=DataSource.getConnection();
 		try {
 			PreparedStatement pstate=con.prepareStatement("insert into users values(?,?,?,?,?)");
@@ -34,9 +34,9 @@ public class RegisterDao {
 		}
 		return i;
 	}
-	public List<userReg> validateData(List<userLogin> lstlogin) {
-		userLogin lobj=lstlogin.get(0);
-		List<userReg> lstreg=null;
+	public List<UserReg> validateData(List<UserLogin> lstlogin) {
+		UserLogin lobj=lstlogin.get(0);
+		List<UserReg> lstreg=null;
 		Connection con=DataSource.getConnection();
 		try {
 			PreparedStatement pstate = con.prepareStatement("select * from users where user_email=? and user_pass=?");
@@ -44,8 +44,8 @@ public class RegisterDao {
 			pstate.setString(2, lobj.getPassword());
 			ResultSet rs = pstate.executeQuery();			
 			if (rs.next()) {
-				lstreg=new LinkedList<userReg>();
-				userReg s=new userReg(rs.getString(2),rs.getString(1),rs.getString(3),rs.getString(4),rs.getString(5));
+				lstreg=new LinkedList<UserReg>();
+				UserReg s=new UserReg(rs.getString(2),rs.getString(1),rs.getString(3),rs.getString(4),rs.getString(5));
 				lstreg.add(s);
 			} 
 		} catch (Exception e) {

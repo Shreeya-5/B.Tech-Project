@@ -1,6 +1,6 @@
 package EduPaper.model;
 
-public class addQue {
+public class AddQue {
     private int queNo;
     private int subtopicId;
     private String unitNo;
@@ -11,12 +11,12 @@ public class addQue {
     private String queType;
     
 
-    public addQue() {
+    public AddQue() {
 		super();
 	}
 
     
-	public addQue(int subtopicId, String quesText, int marks, String diffLevel, String queType, String unitNo,
+	public AddQue(int subtopicId, String quesText, int marks, String diffLevel, String queType, String unitNo,
 			String courseCode) {
 		super();
 		this.subtopicId = subtopicId;
@@ -29,7 +29,7 @@ public class addQue {
 	}
 
 
-	public addQue(int queNo, int subtopicId, String quesText, int marks, String diffLevel, String queType,
+	public AddQue(int queNo, int subtopicId, String quesText, int marks, String diffLevel, String queType,
                   String unitNo, String courseCode) {
         this.queNo = queNo;
         this.subtopicId = subtopicId;

@@ -1,15 +1,15 @@
 package EduPaper.model;
 
-public class addUnit {
+public class AddUnit {
 	private String unitNo;
 	private String courseCode;
 	private String unitName;
 	
-	public addUnit() {
+	public AddUnit() {
 		super();
 	}
 
-	public addUnit(String unitNo, String courseCode, String unitName) {
+	public AddUnit(String unitNo, String courseCode, String unitName) {
 		super();
 		this.unitNo = unitNo;
 		this.courseCode = courseCode;

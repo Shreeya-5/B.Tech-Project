@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import EduPaper.dao.CourseDao;
-import EduPaper.model.addCourse;
-import EduPaper.model.userReg;
+import EduPaper.model.AddCourse;
+import EduPaper.model.UserReg;
 
 /**
  * Servlet implementation class RegisterController
@@ -36,10 +36,10 @@ public class CourseController extends HttpServlet {
 		String courseCode = request.getParameter("courseCode");
 
 		HttpSession session = request.getSession();
-		userReg user = (userReg) session.getAttribute("loggedInUser");
+		UserReg user = (UserReg) session.getAttribute("loggedInUser");
 
 		CourseDao courseDAO = new CourseDao();
-		addCourse newCourse = new addCourse();
+		AddCourse newCourse = new AddCourse();
 		newCourse.setCourseCode(courseCode);
 		newCourse.setCourseName(courseTitle);
 		newCourse.setDeptName(user.getDept());

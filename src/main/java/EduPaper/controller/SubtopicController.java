@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import EduPaper.dao.SubtopicDao;
-import EduPaper.model.addSubtopic;
+import EduPaper.model.AddSubtopic;
 
 /**
  * Servlet implementation class SubtopicController
@@ -37,7 +37,7 @@ public class SubtopicController extends HttpServlet {
 		String unitNo = (String) session.getAttribute("unitNoForSubtopics");
 
 		SubtopicDao subtopicDao = new SubtopicDao();
-		addSubtopic subtopic = new addSubtopic(subtopicName, unitNo, courseCode);
+		AddSubtopic subtopic = new AddSubtopic(subtopicName, unitNo, courseCode);
 		System.out.println(unitNo);
 
 		int result = subtopicDao.createSubtopic(subtopic);

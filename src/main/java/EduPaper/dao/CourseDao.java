@@ -9,7 +9,7 @@ import EduPaper.model.*;
 
 public class CourseDao {
 
-	public int createCourse(addCourse s) {
+	public int createCourse(AddCourse s) {
 		int i = 0;
 		Connection con = DataSource.getConnection();
 
@@ -34,8 +34,8 @@ public class CourseDao {
 		return i;
 	}   
 
-	public List<addCourse> getAllCourses(String email) {
-		List<addCourse> courses = new ArrayList<>();
+	public List<AddCourse> getAllCourses(String email) {
+		List<AddCourse> courses = new ArrayList<>();
 		Connection con = DataSource.getConnection();
 		try {
 			PreparedStatement pstate = con.prepareStatement("select * from course where user_email=?");
@@ -50,7 +50,7 @@ public class CourseDao {
 				String userEmail = rs.getString("user_email");
 
 				// Create an addCourse object and set its attributes
-				addCourse course = new addCourse();
+				AddCourse course = new AddCourse();
 				course.setCourseName(courseName);
 				course.setCourseCode(courseCode);
 				course.setDeptName(deptName);

@@ -1,14 +1,14 @@
 package EduPaper.model;
 
-public class addCourse {
+public class AddCourse {
 	private String courseName;
 	private String courseCode;
 	private String deptName;
 	private String userEmail;
 
-	public addCourse() {}
+	public AddCourse() {}
 
-	public addCourse(String courseName, String courseCode, String deptName, String userEmail) {
+	public AddCourse(String courseName, String courseCode, String deptName, String userEmail) {
 		super();
 		this.courseName = courseName;
 		this.courseCode = courseCode;

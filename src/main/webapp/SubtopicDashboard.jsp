@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <%@page import="java.util.List"%>
-<%@page import="EduPaper.model.addSubtopic"%>
+<%@page import="EduPaper.model.AddSubtopic"%>
 <%@page import="EduPaper.dao.SubtopicDao"%>
 <html lang="en">
 <head>
@@ -53,7 +53,7 @@
 	<div class="container">
 		<%
 		String courseCode = (String) session.getAttribute("courseCodeForSubtopics");
-		String unitNo = (String) session.getAttribute("unitNoForSubtopics");
+				String unitNo = (String) session.getAttribute("unitNoForSubtopics");
 		%>
 
 		<!-- Add Subtopic Modal -->
@@ -107,10 +107,10 @@
 				<div class="subtopicsDisplay">
 					<%
 					SubtopicDao subtopicDao = new SubtopicDao();
-					List<addSubtopic> subtopics = subtopicDao.getAllSubtopicsForUnitAndCourse(unitNo, courseCode);
+								List<AddSubtopic> subtopics = subtopicDao.getAllSubtopicsForUnitAndCourse(unitNo, courseCode);
 
-					if (subtopics != null && !subtopics.isEmpty()) {
-						for (addSubtopic subtopic : subtopics) {
+								if (subtopics != null && !subtopics.isEmpty()) {
+									for (AddSubtopic subtopic : subtopics) {
 					%>
 					<form id="subtopicNoForm<%=subtopic.getSubtopicId()%>"
 						action="SubtopicController" method="post">

@@ -1,15 +1,15 @@
 package EduPaper.model;
 
-public class userReg {
+public class UserReg {
 	private String name;
 	private String email;
 	private String dept;
 	private String mobno;
 	private String password;
 	
-	public userReg() {}
+	public UserReg() {}
 	
-	public userReg(String name, String email, String mobno, String password, String dept) {
+	public UserReg(String name, String email, String mobno, String password, String dept) {
 		super();
 		this.name = name;
 		this.email = email;

@@ -1,7 +1,7 @@
-<%@page import="EduPaper.model.userReg"%>
+<%@page import="EduPaper.model.UserReg"%>
 <%@page import="EduPaper.dao.CourseDao"%>
 <%@page import="java.util.List"%>
-<%@page import="EduPaper.model.addCourse"%>
+<%@page import="EduPaper.model.AddCourse"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,7 +53,7 @@
 <body>
 	<%
 	// Retrieving data from the session
-	userReg loggedInUser = (userReg) session.getAttribute("loggedInUser");
+			UserReg loggedInUser = (UserReg) session.getAttribute("loggedInUser");
 	%>
 	<!--Add Course Modal -->
 	<form action="CourseController" method="get">
@@ -138,15 +138,15 @@
 		<div class="row">
 
 			<div class="col-md-9 ">
-			<h2><%=user.getDept() %></h2>
+			<h2><%=user.getDept()%></h2>
 				<!-- Content in the left part -->
 				<div class="coursesDisplay">
 					<%
 					CourseDao courseDao = new CourseDao();
-					List<addCourse> courses = courseDao.getAllCourses(user.getEmail());
+								List<AddCourse> courses = courseDao.getAllCourses(user.getEmail());
 
-					if (courses != null && !courses.isEmpty()) {
-						for (addCourse course : courses) {
+								if (courses != null && !courses.isEmpty()) {
+									for (AddCourse course : courses) {
 					%>
 					<form id="courseCodeForm<%=course.getCourseCode()%>"
 						action="CourseController" method="post">

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <%@page import="java.util.List"%>
-<%@page import="EduPaper.model.addQue"%>
+<%@page import="EduPaper.model.AddQue"%>
 <%@page import="EduPaper.dao.QuestionDao"%>
 <html lang="en">
 <head>
@@ -125,10 +125,10 @@
 				<!-- Content in the left part -->
 				<%
 				QuestionDao queDao = new QuestionDao();
-				List<addQue> ques = queDao.getAllQue(subtopicId);
+						List<AddQue> ques = queDao.getAllQue(subtopicId);
 
-				if (ques != null && !ques.isEmpty()) {
-					for (addQue que : ques) {
+						if (ques != null && !ques.isEmpty()) {
+							for (AddQue que : ques) {
 				%>
 				<form id="QuestionNoForm<%=que.getQueNo()%>"
 					action="QuestionDashboard.jsp" method="post">

@@ -9,7 +9,7 @@ import EduPaper.model.*;
 
 public class SubtopicDao {
 
-	public int createSubtopic(addSubtopic subtopic) {
+	public int createSubtopic(AddSubtopic subtopic) {
 		int i = 0;
 		Connection con = DataSource.getConnection();
 		
@@ -36,8 +36,8 @@ public class SubtopicDao {
 		return i;
 	}
 
-	public List<addSubtopic> getAllSubtopicsForUnitAndCourse(String unitNo, String courseCode) {
-		List<addSubtopic> subtopics = new ArrayList<>();
+	public List<AddSubtopic> getAllSubtopicsForUnitAndCourse(String unitNo, String courseCode) {
+		List<AddSubtopic> subtopics = new ArrayList<>();
 		Connection con = DataSource.getConnection();
 
 		try {
@@ -53,7 +53,7 @@ public class SubtopicDao {
 				String retrievedUnitNo = rs.getString("UNIT_NO");
 				String retrievedCourseCode = rs.getString("COURSE_CODE");
 
-				addSubtopic subtopic = new addSubtopic(subtopicId, subtopicName, retrievedUnitNo, retrievedCourseCode);
+				AddSubtopic subtopic = new AddSubtopic(subtopicId, subtopicName, retrievedUnitNo, retrievedCourseCode);
 				subtopics.add(subtopic);
 			}
 		} catch (SQLException e) {
@@ -68,8 +68,8 @@ public class SubtopicDao {
 		return subtopics;
 	}
 	
-	public List<addSubtopic> getAllSubtopicsForCourse(String courseCode) {
-		List<addSubtopic> subtopics = new ArrayList<>();
+	public List<AddSubtopic> getAllSubtopicsForCourse(String courseCode) {
+		List<AddSubtopic> subtopics = new ArrayList<>();
 		Connection con = DataSource.getConnection();
 
 		try {
@@ -84,7 +84,7 @@ public class SubtopicDao {
 				String retrievedUnitNo = rs.getString("UNIT_NO");
 				String retrievedCourseCode = rs.getString("COURSE_CODE");
 
-				addSubtopic subtopic = new addSubtopic(subtopicId, subtopicName, retrievedUnitNo, retrievedCourseCode);
+				AddSubtopic subtopic = new AddSubtopic(subtopicId, subtopicName, retrievedUnitNo, retrievedCourseCode);
 				subtopics.add(subtopic);
 			}
 		} catch (SQLException e) {
@@ -101,7 +101,7 @@ public class SubtopicDao {
 
 	public boolean removeAllSubtopicsForCourse(String courseCode) {
 		boolean isRemoved = false;
-		List<addSubtopic> allSubtopics = getAllSubtopicsForCourse(courseCode);
+		List<AddSubtopic> allSubtopics = getAllSubtopicsForCourse(courseCode);
 		Connection con = DataSource.getConnection();
 		
 		if (!allSubtopics.isEmpty() && allSubtopics != null) {

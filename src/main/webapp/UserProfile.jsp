@@ -1,5 +1,5 @@
-<%@page import="EduPaper.model.userReg"%>
-<%@page import="EduPaper.model.addCourse"%>
+<%@page import="EduPaper.model.UserReg"%>
+<%@page import="EduPaper.model.AddCourse"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -123,7 +123,7 @@
 <body>
 	<%
 	// Retrieving data from the session
-	userReg user = (userReg) session.getAttribute("loggedInUser");
+		UserReg user = (UserReg) session.getAttribute("loggedInUser");
 	%>
 	<div class="modal fade" id="profileModal" tabindex="-1" role="dialog"
 		aria-labelledby="profileModalLabel" aria-hidden="true">

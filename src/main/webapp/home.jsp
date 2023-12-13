@@ -7,7 +7,7 @@
 <%@ include file="index.html"%>
 <style>
 .container-fluid {
-	padding: 40px;
+	padding: 35px;
 	text-align: center;
 	width: 100%;
 	background: linear-gradient(to right, #ffb6c1, #87ceeb);

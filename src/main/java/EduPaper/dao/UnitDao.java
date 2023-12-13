@@ -9,7 +9,7 @@ import EduPaper.model.*;
 
 public class UnitDao {
 
-	public int createUnit(addUnit s) {
+	public int createUnit(AddUnit s) {
 		int i = 0;
 		Connection con = DataSource.getConnection();
 
@@ -33,8 +33,8 @@ public class UnitDao {
 		return i;
 	}   
 
-	public List<addUnit> getAllUnits(String code) {
-		List<addUnit> units = new ArrayList<>();
+	public List<AddUnit> getAllUnits(String code) {
+		List<AddUnit> units = new ArrayList<>();
 		Connection con = DataSource.getConnection();
 		try {
 			PreparedStatement pstate = con.prepareStatement("select * from unit where course_code=?");
@@ -48,7 +48,7 @@ public class UnitDao {
 				String unitName = rs.getString("unit_name");
 
 				// Create an addCourse object and set its attributes
-				addUnit unit = new addUnit();
+				AddUnit unit = new AddUnit();
 				unit.setUnitNo(unitNo);
 				unit.setCourseCode(courseCode);
 				unit.setUnitName(unitName);
@@ -70,7 +70,7 @@ public class UnitDao {
 
 	public boolean removeAllUnits(String courseCode) {
 		
-		List<addUnit> allUnits =  getAllUnits(courseCode);
+		List<AddUnit> allUnits =  getAllUnits(courseCode);
 		boolean isRemoved = false;
 		Connection con = DataSource.getConnection();
 

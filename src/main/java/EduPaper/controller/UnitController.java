@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import EduPaper.dao.UnitDao;
-import EduPaper.model.addUnit;
+import EduPaper.model.AddUnit;
 
 /**
  * Servlet implementation class UnitController
@@ -38,7 +38,7 @@ public class UnitController extends HttpServlet {
 		String courseCode = (String) session.getAttribute("courseCodeForUnits");
 
 		UnitDao unitDao = new UnitDao();
-		addUnit newUnit = new addUnit();
+		AddUnit newUnit = new AddUnit();
 		newUnit.setUnitNo(unitNo);
 		newUnit.setCourseCode(courseCode);
 		newUnit.setUnitName(unitName);

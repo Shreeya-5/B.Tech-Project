@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <%@page import="java.util.List"%>
-<%@page import="EduPaper.model.addUnit"%>
+<%@page import="EduPaper.model.AddUnit"%>
 <%@page import="EduPaper.dao.UnitDao"%>
 <html lang="en">
 <head>
@@ -67,12 +67,12 @@
 						<div class="modal-body">
 
 							<div class="form-group">
-								<label for="unitName">Unit No:</label> <input type="text"
+								<label for="unitNo">Unit No:</label> <input type="text"
 									class="form-control" id="unitNo" name="unitNo"
 									placeholder="Unit No">
 							</div>
 							<div class="form-group">
-								<label for="unitDescription">Unit Name:</label> <input
+								<label for="unitName">Unit Name:</label> <input
 									class="form-control" id="unitName" name="unitName"
 									placeholder="Unit Name"></input>
 							</div>
@@ -110,17 +110,17 @@
 				<div class="unitsDisplay">
 					<%
 					UnitDao unitDao = new UnitDao();
-					List<addUnit> units = unitDao.getAllUnits(courseCode);
+								List<AddUnit> units = unitDao.getAllUnits(courseCode);
 
-					if (units != null && !units.isEmpty()) {
-						for (addUnit unit : units) {
+								if (units != null && !units.isEmpty()) {
+									for (AddUnit unit : units) {
 					%>
 					<form id="unitNoForm<%=unit.getUnitNo()%>" action="UnitController"
 						method="post">
-						<input type="hidden" name="unitNoForSubtopics" value="<%=unit.getUnitNo()%>">
-						<input type="hidden" name="courseCodeForSubtopics"
-							value="<%=unit.getCourseCode()%>"> <a
-							onclick="submitUnit('<%=unit.getUnitNo()%>')" class="unit"
+						<input type="hidden" name="unitNoForSubtopics"
+							value="<%=unit.getUnitNo()%>"> <input type="hidden"
+							name="courseCodeForSubtopics" value="<%=unit.getCourseCode()%>">
+						<a onclick="submitUnit('<%=unit.getUnitNo()%>')" class="unit"
 							id="unit_<%=unit.getUnitNo()%>"> <%=unit.getUnitName()%>
 							<button type="button" style="display: none;"></button>
 						</a>
@@ -141,8 +141,8 @@
 				<h3>Actions</h3>
 				<button class="btn btn-primary btn-block" id="addUnitBtn"
 					type="submit" onclick="openUnitModal()">Add Unit</button>
-				<button class="btn btn-success btn-block" id="generatePaperBtn">Generate
-					Paper</button>
+				<a href="GeneratePaper.jsp" class="btn btn-success btn-block">Generate
+					Paper</a>
 				<button class="btn btn-info btn-block" id="previousPaperBtn">Previous
 					Paper</button>
 			</div>
