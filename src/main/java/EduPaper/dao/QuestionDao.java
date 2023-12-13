@@ -113,30 +113,25 @@ public class QuestionDao {
 	}
 
 	public boolean deleteQueByCourse(String courseCode) {
-		List<AddQue> allQues =  getAllQueByCourse(courseCode);
 		boolean isDeleted = false;
 		Connection con = DataSource.getConnection();
 
-		if (!allQues.isEmpty() && allQues != null) {
-			try {
-				PreparedStatement pstate = con.prepareStatement("DELETE FROM Subtopic WHERE AND Course_code = ?");
-				pstate.setString(1, courseCode);
+		try {
+			PreparedStatement pstate = con.prepareStatement("DELETE FROM questionbank where Course_code = ?");
+			pstate.setString(1, courseCode);
 
-				int rowsAffected = pstate.executeUpdate();
-				if (rowsAffected > 0) {
-					isDeleted = true;
-				}
+			int rowsAffected = pstate.executeUpdate();
+			if (rowsAffected > 0) {
+				isDeleted = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-			} finally {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
 			}
-		} else {
-			isDeleted = true;
 		}
 		return isDeleted;
 	}

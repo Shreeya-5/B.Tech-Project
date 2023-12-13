@@ -54,31 +54,4 @@ public class RegisterDao {
 		return lstreg;
 
 	}
-	// 
-	// public StudRegister Search(String cno) {
-	//	 List<StudRegister> lstreg=null;
-	//	 Connection con=DataSource.getConnection();
-	//	 StudRegister r=null;
-	//	 try {
-	//		PreparedStatement pstate=con.prepareStatement("select *from studreg where cno=?");
-	//		 pstate.setString(1,cno);
-	//		 ResultSet rs=pstate.executeQuery();
-	//		 if(rs.next()) {
-	//			 r=new StudRegister(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getString(7),rs.getFloat(8),rs.getString(9));
-	//		 }
-	//	} catch (SQLException e) {
-	//		// TODO Auto-generated catch block
-	//		e.printStackTrace();
-	//	}
-	//	 finally {
-	//		 try {
-	//			con.close();
-	//		} catch (SQLException e) {
-	//			// TODO Auto-generated catch block
-	//			e.printStackTrace();
-	//		}
-	//	 }
-	//	 return r;
-	// }
-	// 
 }
