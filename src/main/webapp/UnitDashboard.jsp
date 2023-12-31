@@ -141,7 +141,7 @@
 				<h3>Actions</h3>
 				<button class="btn btn-primary btn-block" id="addUnitBtn"
 					type="submit" onclick="openUnitModal()">Add Unit</button>
-				<a href="GeneratePaper.jsp" class="btn btn-success btn-block">Generate
+				<a href="QuestionInfo.jsp" class="btn btn-success btn-block">Generate
 					Paper</a>
 				<button class="btn btn-info btn-block" id="previousPaperBtn">Previous
 					Paper</button>

@@ -3,6 +3,7 @@ package EduPaper.model;
 public class AddQue {
     private int queNo;
     private int subtopicId;
+    private int paperId;
     private String unitNo;
     private String courseCode;
     private String quesText;
@@ -104,4 +105,12 @@ public class AddQue {
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
     }
+
+	public int getPaperId() {
+		return paperId;
+	}
+
+	public void setPaperId(int paperId) {
+		this.paperId = paperId;
+	}
 }
