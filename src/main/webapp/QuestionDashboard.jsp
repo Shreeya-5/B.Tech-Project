@@ -19,6 +19,7 @@
 .QuestionDisplay {
 	display: flex;
 	flex-direction: column;
+	
 }
 
 .Question {
@@ -26,10 +27,10 @@
 	border-radius: 5px;
 	border: 1px;
 	margin: 10px;
+	padding: 10px;
 	background-color: #9EEBBF;
 	height: 80px;
-	width: 120px;
-	text-align: center;
+	width: 500px;
 	justify-content: center;
 	align-items: center;
 	text-decoration: none;
@@ -123,31 +124,33 @@
 		<div class="row">
 			<div class="col-md-9">
 				<!-- Content in the left part -->
-				<%
-				QuestionDao queDao = new QuestionDao();
-						List<AddQue> ques = queDao.getAllQue(subtopicId);
+				<div class="QuestionDisplay">
+					<%
+					QuestionDao queDao = new QuestionDao();
+					List<AddQue> ques = queDao.getAllQue(subtopicId);
 
-						if (ques != null && !ques.isEmpty()) {
-							for (AddQue que : ques) {
-				%>
-				<form id="QuestionNoForm<%=que.getQueNo()%>"
-					action="QuestionDashboard.jsp" method="post">
-					<input type="hidden" name="QuestionNo" value="<%=que.getQueNo()%>">
-					<a onclick="submitQuestion('<%=que.getQueNo()%>')" class="Question"
-						id="Question_<%=que.getQueNo()%>"> <%=que.getQuesText()%>
-						<button type="button" style="display: none;"></button>
-					</a>
-				</form>
+					if (ques != null && !ques.isEmpty()) {
+						for (AddQue que : ques) {
+					%>
+					<form id="QuestionNoForm<%=que.getQueNo()%>"
+						action="QuestionDashboard.jsp" method="post">
+						<input type="hidden" name="QuestionNo" value="<%=que.getQueNo()%>">
+						<a onclick="submitQuestion('<%=que.getQueNo()%>')"
+							class="Question" id="Question_<%=que.getQueNo()%>"> <%=que.getQuesText()%><strong>
+							Marks : <%=que.getMarks()%></strong>
+							<button type="button" style="display: none;"></button>
+						</a>
+					</form>
 
-				<%
-				}
-				} else {
-				%>
-				<h2>No Questions Available</h2>
-				<%
-				}
-				%>
-				<div class="QuestionDisplay"></div>
+					<%
+					}
+					} else {
+					%>
+					<h2>No Questions Available</h2>
+					<%
+					}
+					%>
+				</div>
 			</div>
 
 			<div class="col-md-3">

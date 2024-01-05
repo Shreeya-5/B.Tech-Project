@@ -143,8 +143,8 @@
 					type="submit" onclick="openUnitModal()">Add Unit</button>
 				<a href="QuestionInfo.jsp" class="btn btn-success btn-block">Generate
 					Paper</a>
-				<button class="btn btn-info btn-block" id="previousPaperBtn">Previous
-					Paper</button>
+				<a href="PreviousPaper.jsp" class="btn btn-info btn-block" id="previousPaperBtn">Previous
+					Paper</a>
 			</div>
 		</div>
 	</div>

@@ -14,7 +14,7 @@ public class PaperDao {
 		Connection con = DataSource.getConnection();
 
 		try {
-			PreparedStatement pstate = con.prepareStatement("INSERT INTO paper VALUES (?,?,?,?,?,?,?)");
+			PreparedStatement pstate = con.prepareStatement("INSERT INTO paper (course_code, user_email, paper_Name, term_Name, date_Of_Exam, date_Of_Creation, time_Length) VALUES (?,?,?,?,?,?,?)");
 			pstate.setString(1, s.getCourseId());
 			pstate.setString(2, s.getEmail());
 			pstate.setString(3, s.getPaperName());
@@ -37,30 +37,30 @@ public class PaperDao {
 		return i;
 	}   
 
-	public List<AddPaper> getAllPapers(String email) {
+	public List<AddPaper> getAllPapers(String courseCode) {
 		List<AddPaper> papers = new ArrayList<>();
 		Connection con = DataSource.getConnection();
 		try {
-			PreparedStatement pstate = con.prepareStatement("select * from paper where user_email=?");
-			pstate.setString(1, email);
+			PreparedStatement pstate = con.prepareStatement("select * from paper where course_code=?");
+			pstate.setString(1, courseCode);
 
 			ResultSet rs = pstate.executeQuery();
 			while (rs.next()) {
 				// Retrieve data from each row
-				 int paperId = rs.getInt("paper_Id");
-		            String courseCode = rs.getString("course_code");
-		            String userEmail = rs.getString("user_email");
-		            String paperName = rs.getString("paper_name");
-		            String termName = rs.getString("term_name"); // Retrieve termName from the database
-		            String dateOfExam = rs.getString("date_of_exam");
-		            String dateOfCreation = rs.getString("date_of_creation");
-		            String timeLength = rs.getString("time_length");
+				int paperId = rs.getInt("paper_Id");
+				String code = rs.getString("course_code");
+				String userEmail = rs.getString("user_email");
+				String paperName = rs.getString("paper_name");
+				String termName = rs.getString("term_name"); // Retrieve termName from the database
+				String dateOfExam = rs.getString("date_of_exam");
+				String dateOfCreation = rs.getString("date_of_creation");
+				String timeLength = rs.getString("time_length");
 
 				// Create an addCourse object and set its attributes
 				AddPaper paper = new AddPaper();
 
 				paper.setPaperId(paperId);
-				paper.setCourseId(courseCode);
+				paper.setCourseId(code);
 				paper.setEmail(userEmail);
 				paper.setPaperName(paperName);
 				paper.setTermName(termName);
@@ -81,6 +81,46 @@ public class PaperDao {
 			}
 		}
 		return papers;
+	}
+
+	public AddPaper getPaper(String date) {
+		AddPaper paper = new AddPaper();
+		Connection con = DataSource.getConnection();
+		try {
+			PreparedStatement pstate = con.prepareStatement("select * from paper where date_of_creation = ?");
+			pstate.setString(1, date);
+
+			ResultSet rs = pstate.executeQuery();
+			while (rs.next()) {
+				// Retrieve data from each row
+				int paperId = rs.getInt("paper_Id");
+				String courseCode = rs.getString("course_code");
+				String userEmail = rs.getString("user_email");
+				String paperName = rs.getString("paper_name");
+				String termName = rs.getString("term_name"); // Retrieve termName from the database
+				String dateOfExam = rs.getString("date_of_exam");
+				String dateOfCreation = rs.getString("date_of_creation");
+				String timeLength = rs.getString("time_length");
+
+				paper.setPaperId(paperId);
+				paper.setCourseId(courseCode);
+				paper.setEmail(userEmail);
+				paper.setPaperName(paperName);
+				paper.setTermName(termName);
+				paper.setDateOfExam(dateOfExam);
+				paper.setDateOfCreation(dateOfCreation);
+				paper.setTimeLength(timeLength);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return paper;
 	}
 
 	public boolean removePaperById(int paperId) {
@@ -108,7 +148,7 @@ public class PaperDao {
 
 		return isPaperRemoved;
 	}
-	
+
 	public List<AddQue> getPaperQuestions(int id) {
 		List<AddQue> Ques = new ArrayList<>();
 		Connection con = DataSource.getConnection();

@@ -70,6 +70,39 @@ public class CourseDao {
 		}
 		return courses;
 	}
+	
+	public AddCourse getCourse(String code) {
+		AddCourse course = new AddCourse();
+		Connection con = DataSource.getConnection();
+		try {
+			PreparedStatement pstate = con.prepareStatement("select * from course where course_code = ?");
+			pstate.setString(1, code);
+
+			ResultSet rs = pstate.executeQuery();
+			while (rs.next()) {
+				// Retrieve data from each row
+				String courseName = rs.getString("course_name");
+				String courseCode = rs.getString("course_code");
+				String deptName = rs.getString("dept_name");
+				String userEmail = rs.getString("user_email");
+
+				// Create an addCourse object and set its attributes
+				course.setCourseName(courseName);
+				course.setCourseCode(courseCode);
+				course.setDeptName(deptName);
+				course.setUserEmail(userEmail);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return course;
+	}
 
 	public boolean removeCourseByCode(String courseCode) {
 		boolean isQuestionsRemoved = false;

@@ -57,7 +57,9 @@
 				<h3>Paper Information</h3>
 
 				<div class="Questionpaper-section">
-					<h5>Paper Marks : <%=TotalMarksInput%></h5>
+					<h5>
+						Paper Marks :
+						<%=TotalMarksInput%></h5>
 					<div class="form-group">
 						<label for="PaperNameInput">Paper Name</label> <input type="text"
 							class="form-control" id="PaperName" name="PaperName"
@@ -82,15 +84,11 @@
 							name="timeLength" placeholder="Enter time length">
 					</div>
 
-					<div class="form-group">
-						<label for="UploadLogo">Upload Logo</label> <input type="file"
-							class="form-control-file" id="UploadLogo" name="UploadLogo">
-					</div>
-
 				</div>
 
 				<button class="btn btn-primary" id="backBtn">Back</button>
-				<button type="submit" class="btn btn-primary" id="nextBtn">Next</button>
+				<button class="btn btn-primary" type="submit" id="nextBtn">Generate
+					PDF</button>
 			</div>
 		</div>
 	</form>
@@ -101,7 +99,6 @@
 					function() {
 						window.location.href = 'QueMarkInfo.jsp';
 					});
-
 		});
 	</script>
 

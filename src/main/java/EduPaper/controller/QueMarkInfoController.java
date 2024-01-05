@@ -38,6 +38,7 @@ public class QueMarkInfoController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		List<String> allQueNames = new ArrayList<>();
 		List<Integer> subQuestions = (List<Integer>) session.getAttribute("subQuestions");
 		List<String> subQueNames = (List<String>) session.getAttribute("subQueNames");
 		int TotalMarksInput = (int) session.getAttribute("TotalMarksInput");
@@ -47,8 +48,10 @@ public class QueMarkInfoController extends HttpServlet {
 			for (int j = 0; j < subQuestions.get(i - 1); j++) {
 				String subQueMark = request.getParameter("Q"+i+subQueNames.get(j)+"");
 				subQueMarks.add(Integer.parseInt(subQueMark));
+				allQueNames.add("Q"+i+") "+subQueNames.get(j)+". ");
 			}
 		}
+		session.setAttribute("allQueNames", allQueNames);
 		session.setAttribute("subQueMarks", subQueMarks);
 		response.sendRedirect("PaperInfo.jsp");
 	}

@@ -39,6 +39,7 @@ public class SubQueInfoController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		int NumberOfQuestionInput = (int) session.getAttribute("NumberOfQuestionInput");
+		
         List<String> subQueNames = new ArrayList<>(); // Collection to store subquestions
         subQueNames.add("a");
         subQueNames.add("b");

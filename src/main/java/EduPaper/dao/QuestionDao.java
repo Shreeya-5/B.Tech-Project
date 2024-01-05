@@ -85,7 +85,7 @@ public class QuestionDao {
 			ResultSet rs = pstate.executeQuery();
 			while (rs.next()) {
 				// Retrieve data from each row
-				int queNo = rs.getInt("unit_name");
+				int queNo = rs.getInt("que_no");
 				int subtopicNo = rs.getInt("subtopic_id");
 				String quesText = rs.getString("que_text");
 				int marks = rs.getInt("marks");
@@ -110,6 +110,75 @@ public class QuestionDao {
 			}
 		}
 		return ques;
+	}
+	
+	public List<AddQue> getQuesForPaper(List<Integer> combination, String unit_no, String course_code, int paperId) {
+	    List<AddQue> ques = new ArrayList<>();
+		Connection con = DataSource.getConnection();
+	    PreparedStatement pstate = null;
+	    ResultSet rs = null;
+
+	    try {
+	        // Assuming the marks column is an integer in the database
+	        StringBuilder queryBuilder = new StringBuilder("SELECT * FROM questionbank WHERE marks IN (");
+	        for (int i = 0; i < combination.size(); i++) {
+	            queryBuilder.append("?");
+	            if (i != combination.size() - 1) {
+	                queryBuilder.append(", ");
+	            }
+	        }
+	        queryBuilder.append(") AND unit_no = ? AND course_code = ? ORDER BY DBMS_RANDOM.VALUE FETCH FIRST 1 ROW ONLY");
+
+	        pstate = con.prepareStatement(queryBuilder.toString());
+
+	        // Set combination values as parameters for marks
+	        for (int i = 0; i < combination.size(); i++) {
+	            pstate.setInt(i + 1, combination.get(i));
+	        }
+	        pstate.setString(combination.size() + 1, unit_no);
+	        pstate.setString(combination.size() + 2, course_code);
+
+	        rs = pstate.executeQuery();
+	        while (rs.next()) {
+	            int queNo = rs.getInt("que_no");
+	            int subtopicNo = rs.getInt("subtopic_id");
+	            String quesText = rs.getString("que_text");
+	            int marks = rs.getInt("marks");
+	            String diffLevel = rs.getString("diff_level");
+	            String queType = rs.getString("que_type");
+	            String unitNo = rs.getString("unit_No");
+	            String code = rs.getString("course_code");
+
+	            AddQue que = new AddQue(queNo, subtopicNo, quesText, marks, diffLevel, queType, unitNo, code);
+	            ques.add(que);
+	            
+	            saveToPaperQuestions(paperId, quesText, marks, diffLevel, queType, con);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        // Close resources in a finally block to ensure they are closed even if an exception occurs
+	        try {
+	            if (rs != null) rs.close();
+	            if (pstate != null) pstate.close();
+	            if (con != null) con.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return ques;
+	}
+	
+	private void saveToPaperQuestions(int paperId, String quesText, int marks, String diffLevel, String queType, Connection con) throws SQLException {
+	    String insertQuery = "INSERT INTO PaperQuestions (Paper_Id, Que_Text, Marks, Diff_Level, Que_type) VALUES (?, ?, ?, ?, ?)";
+	    PreparedStatement pstate = con.prepareStatement(insertQuery);
+	    pstate.setInt(1, paperId);
+	    pstate.setString(2, quesText);
+	    pstate.setInt(3, marks);
+	    pstate.setString(4, diffLevel);
+	    pstate.setString(5, queType);
+	    pstate.executeUpdate();
+	    pstate.close();
 	}
 
 	public boolean deleteQueByCourse(String courseCode) {
